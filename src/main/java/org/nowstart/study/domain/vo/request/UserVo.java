@@ -1,6 +1,7 @@
-package org.nowstart.study.domain.vo.requestvo;
+package org.nowstart.study.domain.vo.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -9,6 +10,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public class UserVo {
+    @Size(min = 3)
     @NotBlank
     private String id;
 

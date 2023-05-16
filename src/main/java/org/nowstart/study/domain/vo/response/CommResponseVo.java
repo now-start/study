@@ -1,4 +1,4 @@
-package org.nowstart.study.domain.vo.responsevo;
+package org.nowstart.study.domain.vo.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -13,7 +13,7 @@ import lombok.experimental.SuperBuilder;
 @ToString
 @AllArgsConstructor
 @JsonRootName("result")
-public class SuccessResponseVo {
+public class CommResponseVo {
     @Builder.Default
     @JsonProperty("flag")
     private String flag = "0000";
