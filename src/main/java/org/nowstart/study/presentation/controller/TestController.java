@@ -1,4 +1,4 @@
-package org.nowstart.study.controller;
+package org.nowstart.study.presentation.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

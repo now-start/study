@@ -5,6 +5,9 @@ server.port: 8080
 ############################################
 #### Spring
 spring:
+  #### @JsonRootName 적용을 위한 properties
+  jackson.serialization.wrap-root-value: true
+
   #### Data Source
   datasource:
     url: jdbc:h2:mem:study

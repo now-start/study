@@ -1,4 +1,4 @@
-package org.nowstart.study.config;
+package org.nowstart.study.presentation.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +15,11 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .authorizeHttpRequests(request -> request
-                        .anyRequest().permitAll()
-                )
-                .logout(withDefaults())
-                .build();
+            .csrf().disable()
+            .authorizeHttpRequests(request -> request
+                .anyRequest().permitAll()
+            )
+            .logout(withDefaults())
+            .build();
     }
 }
