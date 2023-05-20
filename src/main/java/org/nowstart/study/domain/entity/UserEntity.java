@@ -1,20 +1,23 @@
 package org.nowstart.study.domain.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicUpdate;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Table(name = "users")
-@DynamicUpdate
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserEntity {
+
     @Id
     String id;
 

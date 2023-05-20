@@ -14,6 +14,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @JsonRootName("result")
 public class CommResponseVo {
+
     @Builder.Default
     @JsonProperty("flag")
     private String flag = "0000";

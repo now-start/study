@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.nowstart.study.domain.mapper.UserMapper;
 import org.nowstart.study.domain.vo.request.UserVo;
 import org.nowstart.study.domain.vo.response.UserResponseVo;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class TestController {
+
     private final UserMapper userMapper;
 
     @GetMapping("/test1")
