@@ -42,4 +42,9 @@ public class TestController {
     public UserResponseVo mapstructController(@Valid UserVo userVo) {
         return userMapper.toVo(userMapper.toDto(userVo));
     }
+
+    @GetMapping("/test6/{id}")
+    public UserResponseVo pathParamController(@Valid UserVo userVo) {
+        return userMapper.toVo(userMapper.toDto(userVo));
+    }
 }
