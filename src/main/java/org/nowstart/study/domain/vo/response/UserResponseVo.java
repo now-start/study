@@ -8,5 +8,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @JsonRootName("result")
 public class UserResponseVo extends CommResponseVo {
-
+    String id;
+    String password;
 }

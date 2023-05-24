@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'jacoco'
     id 'org.springframework.boot' version '3.0.6'
     id 'io.spring.dependency-management' version '1.1.0'
 }
@@ -17,6 +18,8 @@ configurations {
 repositories {
     mavenCentral()
 }
+
+jar { enabled = false }
 
 ext {
     set('springCloudVersion', "2022.0.2")
@@ -63,4 +66,86 @@ dependencyManagement {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled true
+        xml.enabled true
+        csv.enabled false
+    }
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "org/nowstart/study/presentation/config/*",
+                    "org/nowstart/study/presentation/exception/*",
+                    "org/nowstart/study/domain/*",
+            ])
+        }))
+    }
+
+    finalizedBy 'jacocoTestCoverageVerification'
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            // Jacoco Rule 활성화
+            enabled = true
+
+            // 룰 체크 단위
+            element = 'CLASS' // Option: BUNDLE(default), PACKAGE, CLASS, SOURCEFILE, METHOD
+
+            // Method 커버리지
+            limit {
+                counter = 'METHOD' // Option: INSTRUCTION(default), LINE, BRANCH, CLASS, METHOD, COMPLEXITY
+                value = 'COVEREDRATIO'
+                // Option: COVEREDRATIO(default), TOTALCOUNT, MISSEDCOUNT, COVEREDCOUNT, MISSEDRATIO
+                minimum = 1.00
+            }
+
+            // Branch 커버리지
+            limit {
+                counter = 'BRANCH' // Option: INSTRUCTION(default), LINE, BRANCH, CLASS, METHOD, COMPLEXITY
+                value = 'COVEREDRATIO'
+                // Option: COVEREDRATIO(default), TOTALCOUNT, MISSEDCOUNT, COVEREDCOUNT, MISSEDRATIO
+                minimum = 0.60
+            }
+
+            // 커버리지 체크 제외 클래스
+            excludes = [
+                    'org.nowstart.study.presentation.config.*',
+                    'org.nowstart.study.presentation.exception.*',
+                    'org.nowstart.study.domain.*',
+            ]
+        }
+    }
+}
+
+task testCoverage(type: Test) {
+    group 'verification'
+    description 'Runs the unit tests with coverage'
+
+    dependsOn(':test',
+            ':jacocoTestReport',
+            ':jacocoTestCoverageVerification')
+
+    tasks['jacocoTestReport'].mustRunAfter(tasks['test'])
+    tasks['jacocoTestCoverageVerification'].mustRunAfter(tasks['jacocoTestReport'])
+}
+
+test {
+    if (System.properties.containsKey('spring.profiles.active')) {
+        String activeProfile = System.properties['spring.profiles.active']
+        println "profile: $activeProfile"
+        systemProperty "spring.profiles.active", activeProfile
+    }
+
+    useJUnitPlatform()
+    ignoreFailures = true
+    finalizedBy 'jacocoTestReport'
+    afterTest { desc, result ->
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
 }
