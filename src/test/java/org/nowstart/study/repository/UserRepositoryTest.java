@@ -41,8 +41,8 @@ class UserRepositoryTest {
         assertThat(result.getId()).isEqualTo(TEST_ID);
         assertThat(result.getPassword()).isEqualTo(TEST_PASSWORD);
         assertThat(result.getName()).isEqualTo(TEST_NAME);
-        assertThat(result.getRegistrationDate()).isNull();
-        assertThat(result.getModifyDate()).isNull();
+        assertThat(result.getRegistrationDate()).isNotNull();
+        assertThat(result.getModifyDate()).isNotNull();
     }
 
     @Test
