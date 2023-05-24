@@ -18,7 +18,6 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -36,6 +35,7 @@ jobs:
         arguments: build
         
   analyze:
+    needs: build
     name: Analyze
     runs-on: ubuntu-latest
     permissions:
