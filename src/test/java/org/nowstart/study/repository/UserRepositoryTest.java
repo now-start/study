@@ -42,7 +42,7 @@ class UserRepositoryTest {
         assertThat(result.getPassword()).isEqualTo(TEST_PASSWORD);
         assertThat(result.getName()).isEqualTo(TEST_NAME);
         assertThat(result.getRegistrationDate()).isNotNull();
-        assertThat(result.getModifyDate()).isNull();
+        assertThat(result.getModifyDate()).isNotNull();
     }
 
     @Test
