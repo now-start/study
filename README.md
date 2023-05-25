@@ -4,6 +4,8 @@
 
 ### SPRING BOOT
 
+### JPA
+
 ## CI/CD
 
 ### GITHUB ACTION
