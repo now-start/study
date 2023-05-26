@@ -38,10 +38,21 @@ public class ControllerAdvice {
     public ResponseEntity<CommResponseVo> handleBindException(BindException ex) {
         log.error(ex.getMessage(), ex);
 
-        ExceptionType exceptionType = ExceptionType.valueOf(toUpperSnakeCase(ex.getFieldErrors().get(0).getCode()));
-        StringJoiner message = new StringJoiner(" : ");
-        message.add(ex.getFieldErrors().get(0).getField());
-        message.add(exceptionType.getMessage());
+        ExceptionType exceptionType;
+        StringJoiner message;
+
+        try {
+            exceptionType = ExceptionType.valueOf(toUpperSnakeCase(ex.getFieldErrors().get(0).getCode()));
+            message = new StringJoiner(" : ");
+            message.add(ex.getFieldErrors().get(0).getField());
+            message.add(exceptionType.getMessage());
+        } catch (Exception e) {
+            exceptionType = ExceptionType.UNDEFINED;
+            message = new StringJoiner(" : ");
+            message.add(ex.getFieldErrors().get(0).getField());
+            message.add(ex.getFieldErrors().get(0).getDefaultMessage());
+            message.add("현재 ExceptionType 정의되지 않았습니다.");
+        }
 
         return ResponseEntity.status(HttpStatus.OK)
             .body(CommResponseVo.builder()
