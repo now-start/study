@@ -5,8 +5,8 @@ import lombok.Getter;
 @Getter
 public enum ExceptionType {
     //bindingException
-    NOT_BLANK("5000", "공백일 수 없습니다."),
-    SIZE("5001", "사이즈가 너무 큽니다."),
+    NOT_BLANK("5000", "공백일 수 없음"),
+    SIZE("5001", "사이즈가 잘못됨"),
 
     //customException
     NO_SUCH_ELEMENT_EXCEPTION("8001", "DB값이 없음"),

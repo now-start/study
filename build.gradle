@@ -78,6 +78,7 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
+                    "org/nowstart/study/*Application*",
                     "org/nowstart/study/presentation/config/*",
                     "org/nowstart/study/presentation/exception/*",
                     "org/nowstart/study/domain/*",
@@ -115,6 +116,7 @@ jacocoTestCoverageVerification {
 
             // 커버리지 체크 제외 클래스
             excludes = [
+                    "org.nowstart.study.*Application*",
                     'org.nowstart.study.presentation.config.*',
                     'org.nowstart.study.presentation.exception.*',
                     'org.nowstart.study.domain.*',

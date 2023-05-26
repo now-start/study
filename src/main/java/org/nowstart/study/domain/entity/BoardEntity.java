@@ -9,6 +9,7 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.nowstart.study.domain.dto.BoardDto;
@@ -38,6 +39,7 @@ public class BoardEntity {
     @Column
     LocalDateTime modifyDate;
 
+    @Builder
     public BoardEntity(String title, String writer, String contents) {
         this.title = title;
         this.writer = writer;
