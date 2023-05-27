@@ -9,10 +9,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class JasyptConfigTest {
 
-    private static final String encryptKey = "";
+    private static final String encryptKey = "test";
 
     @ParameterizedTest
-    @CsvSource({""})
+    @CsvSource({"test"})
     void jasyptStringEncryptor(String password) {
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
