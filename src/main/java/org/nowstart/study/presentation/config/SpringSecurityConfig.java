@@ -17,6 +17,7 @@ public class SpringSecurityConfig {
         return http
             .csrf().disable()
             .cors().disable()
+            .headers().frameOptions().sameOrigin().and()
             .authorizeHttpRequests(request -> request
                 .anyRequest().permitAll()
             )
