@@ -36,7 +36,7 @@ logging.level:
 #### swagger-ui
 springdoc:
   api-docs:
-    path: ENC(9iYmGLengH9BKIbFFhSN4Wu8OEHrWDxCpL80amcejqeTKmo6fIEGdWvkgccWYx8Z)
+    path: ENC(P+BK/RAVv2cV/wV0APUn+j/zna8kKWm/VgTvMUMNSwk0Ui6reDi7IprKbVmGR237)
 
 ############################################
 ## FeignClient
