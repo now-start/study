@@ -5,9 +5,6 @@ server.port: 8080
 ############################################
 #### Spring
 spring:
-  #### @JsonRootName 적용을 위한 properties
-  jackson.serialization.wrap-root-value: true
-
   #### Data Source
   datasource:
     url: ENC(1KYfZmkwoq4IrFgu5wfj5LVSpCWkioiRjPMZCPYoDCf0QbRrfaTUKAafq1T+Lzvv1waP7cvO+CF8IgVN+fNQRA==)
@@ -35,8 +32,7 @@ logging.level:
 ############################################
 #### swagger-ui
 springdoc:
-  api-docs:
-    path: /index
   swagger-ui:
-    path: /index
     disable-swagger-default-url: true
+    display-request-duration: true
+    use-root-path: true
