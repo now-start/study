@@ -4,11 +4,9 @@ import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
 class JasyptConfigTest {
 
     private static final String encryptKey = "";
@@ -30,7 +28,7 @@ class JasyptConfigTest {
 
         System.out.println("encryptKey = " + encryptKey);
         String encrypt = encryptor.encrypt(password);
-        System.out.println("encrypt = " + encrypt);
+        System.out.println("encrypt = ENC(" + encrypt + ")");
         String decrypt = encryptor.decrypt(encrypt);
         System.out.println("decrypt = " + decrypt);
 
