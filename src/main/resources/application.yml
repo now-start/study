@@ -33,6 +33,12 @@ logging.level:
   org.hibernate.orm.jdbc.bind: trace
 
 ############################################
+#### swagger-ui
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+
+############################################
 ## FeignClient
 #FeignClientfeign:
 #  client:
