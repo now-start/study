@@ -19,33 +19,32 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/board")
 public class BoardController {
 
     private final BoardMapper boardMapper;
     private final BoardService boardService;
 
-    @GetMapping("/list")
+    @GetMapping("/board/list")
     public BoardResponseVo findAllBoard() {
         log.info("[BoardController][findAllBoard][/board/list]");
         return boardService.findAllBoard();
     }
 
-    @PostMapping("")
+    @PostMapping("/board")
     public CommResponseVo saveBoard(@Valid BoardRequestVo boardRequestVo) {
         log.info("[BoardController][saveBoard][/board] : {}", boardRequestVo.toString());
         boardService.saveBoard(boardMapper.toDto(boardRequestVo));
         return CommResponseVo.builder().build();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/board/{id}")
     public CommResponseVo updateBoard(@Valid BoardRequestVo boardRequestVo) {
         log.info("[BoardController][updateBoard][/board] : {}", boardRequestVo.toString());
         boardService.updateBoard(boardMapper.toDto(boardRequestVo));
         return CommResponseVo.builder().build();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/board/{id}")
     public CommResponseVo deleteBoard(@PathVariable() String id) {
         log.info("[BoardController][deleteBoard][/board] : {}", id);
         boardService.deleteBoard(id);
