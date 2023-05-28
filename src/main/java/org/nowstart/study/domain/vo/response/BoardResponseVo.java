@@ -8,7 +8,6 @@ import org.nowstart.study.domain.dto.BoardDto;
 
 @Getter
 @SuperBuilder
-@JsonRootName("result")
 public class BoardResponseVo extends CommResponseVo {
 
     private List<BoardDto> resultSet;
