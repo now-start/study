@@ -12,7 +12,9 @@ spring:
     password: ENC(d6GGRzdrMYq8fCmwBhICbR0fRLGO+EtbjvKODZ8yKqtpk+quXk3q358W17XH4Ohv)
 
   #### JPA(h2)
-  h2.console.enabled: true
+  h2.console:
+    enabled: true
+    settings.web-allow-others: true
 
   jpa:
     database: h2
