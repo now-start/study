@@ -32,7 +32,7 @@ gradlew clean build -x test
 ```shell
 java -Djasypt.encryptor.password=${PASSWORD} -Dspring.profiles.active=${PROFILE} -jar study-0.0.1-SNAPSHOT.jar
 ```
-* If you don't know the jasypt password or want to use a different DB, you must create a application-${PROFILE}.yml file and enter a PROFILE environment variable
+* If you don't know the jasypt password or want to use a different DB, you must create a `application-${PROFILE}.yml` file and enter a `${PROFILE}` environment variable
   * `url`: database url
   * `username`: database id
   * `password`: database password
