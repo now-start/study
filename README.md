@@ -5,21 +5,15 @@ This project is designed to study Spring Boot 3.X, CI/CD, and various architectu
 
 ## Demo
 * [API Document](https://study.nowstart.org)
-* [h2](https://study.nowstart.org/h2-console)
+* [DataBase Console](https://study.nowstart.org/h2-console)
 
+## Dependencies
 <details>
-<summary><h2>Dependencies</h2></summary>
+<summary>Details</summary>
 
 * Java 17
 * Spring-Boot 3.0.4
-  * Spring-Security
-  * JPA
-  * Thymeleaf
-  * Validation
-  * Web
-  * Openfeign
-  * Devtool 
-  * Jacoco
+* Jacoco
 * Mapstruct 1.5.3
 * SpringDoc 2.0.4
 * Querydsl 5.0.0
