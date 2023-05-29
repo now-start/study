@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @AllArgsConstructor
-public class UserVo {
+public class UserRequestVo {
     @Size(min = 3)
     @NotBlank
     private String id;

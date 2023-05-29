@@ -8,7 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.nowstart.study.domain.mapper.UserMapper;
-import org.nowstart.study.domain.vo.request.UserVo;
+import org.nowstart.study.domain.vo.request.UserRequestVo;
 import org.nowstart.study.domain.vo.response.UserResponseVo;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -43,23 +43,23 @@ public class TestController {
     }
 
     @GetMapping("/test3")
-    public String modelAttributeController(@Valid UserVo userVo) {
-        return userVo.toString();
+    public String modelAttributeController(@Valid UserRequestVo userRequestVo) {
+        return userRequestVo.toString();
     }
 
     @PostMapping("/test4")
     @Operation(summary = "Test3", description = "requestBodyController")
-    public String requestBodyController(@RequestBody @Valid UserVo userVo) {
-        return userVo.toString();
+    public String requestBodyController(@RequestBody @Valid UserRequestVo userRequestVo) {
+        return userRequestVo.toString();
     }
 
     @GetMapping("/test5")
-    public UserResponseVo mapstructController(@Valid UserVo userVo) {
-        return userMapper.toVo(userMapper.toDto(userVo));
+    public UserResponseVo mapstructController(@Valid UserRequestVo userRequestVo) {
+        return userMapper.toVo(userMapper.toDto(userRequestVo));
     }
 
     @GetMapping("/test6/{id}")
-    public UserResponseVo pathParamController(@Valid UserVo userVo) {
-        return userMapper.toVo(userMapper.toDto(userVo));
+    public UserResponseVo pathParamController(@Valid UserRequestVo userRequestVo) {
+        return userMapper.toVo(userMapper.toDto(userRequestVo));
     }
 }
