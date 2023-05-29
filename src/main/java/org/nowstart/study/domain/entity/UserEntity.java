@@ -1,22 +1,19 @@
 package org.nowstart.study.domain.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Table;
-import java.time.LocalDateTime;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Persistable;
+
+import java.util.List;
 
 @Entity
 @Getter
 @Table(name = "users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserEntity {
+public class UserEntity extends CommEntity implements Persistable<String> {
 
     @Id
     String id;
@@ -30,11 +27,8 @@ public class UserEntity {
     @Column
     String roles;
 
-    @Column(updatable = false)
-    LocalDateTime registrationDate;
-
-    @Column
-    LocalDateTime modifyDate;
+    @OneToMany(mappedBy = "userEntity")
+    List<BoardEntity> boardEntities;
 
     @Builder
     public UserEntity(String id, String password, String name) {
@@ -43,14 +37,8 @@ public class UserEntity {
         this.name = name;
     }
 
-    @PrePersist
-    public void onPrePersist() {
-        this.registrationDate = LocalDateTime.now();
-        this.modifyDate = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void onPreUpdate() {
-        this.modifyDate = LocalDateTime.now();
+    @Override
+    public boolean isNew() {
+        return getCreatedDate() == null;
     }
 }

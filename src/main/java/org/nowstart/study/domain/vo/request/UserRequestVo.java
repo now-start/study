@@ -16,4 +16,7 @@ public class UserRequestVo {
 
     @NotBlank
     private String password;
+
+    @NotBlank
+    private String name;
 }

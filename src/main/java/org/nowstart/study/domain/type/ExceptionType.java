@@ -10,7 +10,7 @@ public enum ExceptionType {
 
     //customException
     NO_SUCH_ELEMENT_EXCEPTION("8001", "DB값이 없음"),
-    NOT_FOUND_EXCEPTION("8001", "DB값이 없음"),
+    DUPLICATE_REQUEST_EXCEPTION("8002", "키 값 중복"),
 
     //etc
     UNDEFINED("9999", "기타 에러");

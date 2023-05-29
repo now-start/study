@@ -1,9 +1,11 @@
 package org.nowstart.study.presentation.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.nowstart.study.domain.mapper.UserMapper;
+import org.nowstart.study.domain.vo.request.UserRequestVo;
 import org.nowstart.study.presentation.config.SpringSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -33,7 +35,7 @@ class TestControllerTest {
 
         //when
         MvcResult result = mvc.perform(get("/test1")
-            .accept(MediaType.APPLICATION_JSON)).andReturn();
+                .accept(MediaType.APPLICATION_JSON)).andReturn();
 
         //then
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
@@ -48,8 +50,8 @@ class TestControllerTest {
 
         //when
         MvcResult result = mvc.perform(get("/test2")
-            .accept(MediaType.APPLICATION_JSON)
-            .queryParams(queryParams)).andReturn();
+                .accept(MediaType.APPLICATION_JSON)
+                .queryParams(queryParams)).andReturn();
 
         //then
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
@@ -57,17 +59,18 @@ class TestControllerTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"testId1, testPassword1", "testId2, testPassword2", "testId3, testPassword3"})
-    void modelAttributeController(String id, String password) throws Exception {
+    @CsvSource({"testId1, testPassword1, testName1", "testId2, testPassword2, testName1", "testId3, testPassword3, testName1"})
+    void modelAttributeController(String id, String password, String name) throws Exception {
         //given
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
         queryParams.add("id", id);
         queryParams.add("password", password);
+        queryParams.add("name", name);
 
         //when
         MvcResult result = mvc.perform(get("/test3")
-            .accept(MediaType.APPLICATION_JSON)
-            .queryParams(queryParams)).andReturn();
+                .accept(MediaType.APPLICATION_JSON)
+                .queryParams(queryParams)).andReturn();
 
         //then
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
@@ -75,16 +78,17 @@ class TestControllerTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"testId1, testPassword1", "testId2, testPassword2", "testId3, testPassword3"})
-    void requestBodyController(String id, String password) throws Exception {
+    @CsvSource({"testId1, testPassword1, testName1", "testId2, testPassword2, testName1", "testId3, testPassword3, testName1"})
+    void requestBodyController(String id, String password, String name) throws Exception {
         //given
-        String queryParams = "{\"id\":\"" + id + "\",\"password\":\"" + password + "\"}";
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestBody = objectMapper.writeValueAsString(new UserRequestVo(id, password, name));
 
         //when
         MvcResult result = mvc.perform(post("/test4")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(queryParams)).andReturn();
+                .content(requestBody)).andReturn();
 
         //then
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
@@ -97,11 +101,12 @@ class TestControllerTest {
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
         queryParams.add("id", "testId");
         queryParams.add("password", "testPw");
+        queryParams.add("name", "testName");
 
         //when
         MvcResult result = mvc.perform(get("/test5")
-            .accept(MediaType.APPLICATION_JSON)
-            .queryParams(queryParams)).andReturn();
+                .accept(MediaType.APPLICATION_JSON)
+                .queryParams(queryParams)).andReturn();
 
         //then
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
@@ -114,11 +119,12 @@ class TestControllerTest {
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
         queryParams.add("id", id);
         queryParams.add("password", "test");
+        queryParams.add("name", "testName");
 
         //when
         MvcResult result = mvc.perform(get("/test6/{id}", id)
-            .accept(MediaType.APPLICATION_JSON)
-            .queryParams(queryParams)).andReturn();
+                .accept(MediaType.APPLICATION_JSON)
+                .queryParams(queryParams)).andReturn();
 
         //then
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
@@ -134,11 +140,11 @@ class TestControllerTest {
 
         //when
         MvcResult result = mvc.perform(get("/test5")
-            .accept(MediaType.APPLICATION_JSON)
-            .queryParams(queryParams)).andReturn();
+                .accept(MediaType.APPLICATION_JSON)
+                .queryParams(queryParams)).andReturn();
 
         //then
-        assertThat(result.getResponse().getStatus()).isEqualTo(200);
+        assertThat(result.getResponse().getStatus()).isEqualTo(400);
         assertThat(result.getResponse().getContentAsString()).containsAnyOf("5000", "5001");
     }
 }

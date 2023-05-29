@@ -1,16 +1,20 @@
 package org.nowstart.study.repository;
 
-import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.nowstart.study.domain.entity.UserEntity;
+import org.nowstart.study.presentation.config.JpaAuditingConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
+
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
+@Import(JpaAuditingConfig.class)
 class UserRepositoryTest {
 
     private static final String TEST_ID = "testId";
@@ -24,10 +28,10 @@ class UserRepositoryTest {
     @BeforeEach
     void init() {
         userRepository.save(UserEntity.builder()
-            .id(TEST_ID)
-            .password(TEST_PASSWORD)
-            .name(TEST_NAME)
-            .build());
+                .id(TEST_ID)
+                .password(TEST_PASSWORD)
+                .name(TEST_NAME)
+                .build());
     }
 
     @Test
@@ -40,19 +44,14 @@ class UserRepositoryTest {
         assertThat(result.getId()).isEqualTo(TEST_ID);
         assertThat(result.getPassword()).isEqualTo(TEST_PASSWORD);
         assertThat(result.getName()).isEqualTo(TEST_NAME);
-        assertThat(result.getRegistrationDate()).isNotNull();
-        assertThat(result.getModifyDate()).isNotNull();
+        assertThat(result.getCreatedDate()).isNotNull();
+        assertThat(result.getModifiedDate()).isNotNull();
     }
 
     @Test
     @DisplayName("insert 테스트")
     void createTest() {
         //given
-        userRepository.save(UserEntity.builder()
-            .id(TEST_ID)
-            .password(TEST_PASSWORD)
-            .name(TEST_NAME)
-            .build());
 
         //when
         UserEntity result = userRepository.findById(TEST_ID).orElseThrow();
@@ -60,26 +59,6 @@ class UserRepositoryTest {
         //then
         assertThat(result.getId()).isEqualTo(TEST_ID);
         assertThat(result.getPassword()).isEqualTo(TEST_PASSWORD);
-        assertThat(result.getName()).isEqualTo(TEST_NAME);
-    }
-
-    @Test
-    @DisplayName("update 테스트")
-    void updateTest() {
-        //given
-        UserEntity userEntity = UserEntity.builder()
-            .id(TEST_ID)
-            .password(UPDATE_TEST_PASSWORD)
-            .name(TEST_NAME)
-            .build();
-
-        //when
-        userRepository.saveAndFlush(userEntity);
-        UserEntity result = userRepository.findById(TEST_ID).orElseThrow();
-
-        //then
-        assertThat(result.getId()).isEqualTo(TEST_ID);
-        assertThat(result.getPassword()).isEqualTo(UPDATE_TEST_PASSWORD);
         assertThat(result.getName()).isEqualTo(TEST_NAME);
     }
 

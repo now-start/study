@@ -1,13 +1,6 @@
 package org.nowstart.study.domain.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Table;
-import java.time.LocalDateTime;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,11 +11,11 @@ import org.nowstart.study.domain.dto.BoardDto;
 @Getter
 @Table(name = "board")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class BoardEntity {
+public class BoardEntity extends CommEntity {
 
     @Id
     @GeneratedValue
-    Integer id;
+    Long id;
 
     @Column
     String title;
@@ -33,11 +26,8 @@ public class BoardEntity {
     @Column
     String contents;
 
-    @Column(updatable = false)
-    LocalDateTime registrationDate;
-
-    @Column
-    LocalDateTime modifyDate;
+    @ManyToOne
+    UserEntity userEntity;
 
     @Builder
     public BoardEntity(String title, String writer, String contents) {
@@ -51,16 +41,4 @@ public class BoardEntity {
         this.writer = boardDto.getWriter();
         this.contents = boardDto.getContents();
     }
-
-    @PrePersist
-    public void onPrePersist() {
-        this.registrationDate = LocalDateTime.now();
-        this.modifyDate = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void onPreUpdate() {
-        this.modifyDate = LocalDateTime.now();
-    }
-
 }

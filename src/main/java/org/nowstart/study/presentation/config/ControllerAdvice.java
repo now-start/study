@@ -1,6 +1,5 @@
 package org.nowstart.study.presentation.config;
 
-import java.util.StringJoiner;
 import lombok.extern.slf4j.Slf4j;
 import org.nowstart.study.domain.type.ExceptionType;
 import org.nowstart.study.domain.vo.response.CommResponseVo;
@@ -9,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.StringJoiner;
 
 @Slf4j
 @RestControllerAdvice
@@ -54,11 +55,11 @@ public class ControllerAdvice {
             message.add("현재 ExceptionType 정의되지 않았습니다.");
         }
 
-        return ResponseEntity.status(HttpStatus.OK)
-            .body(CommResponseVo.builder()
-                .flag(exceptionType.getFlag())
-                .message(message.toString())
-                .build());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(CommResponseVo.builder()
+                        .flag(exceptionType.getFlag())
+                        .message(message.toString())
+                        .build());
 
     }
 
@@ -73,11 +74,11 @@ public class ControllerAdvice {
             exceptionType = ExceptionType.UNDEFINED;
         }
 
-        return ResponseEntity.status(HttpStatus.OK)
-            .body(CommResponseVo.builder()
-                .flag(exceptionType.getFlag())
-                .message(exceptionType.getMessage())
-                .build());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(CommResponseVo.builder()
+                        .flag(exceptionType.getFlag())
+                        .message(exceptionType.getMessage())
+                        .build());
 
     }
 }

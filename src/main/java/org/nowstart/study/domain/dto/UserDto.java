@@ -9,4 +9,5 @@ public class UserDto {
 
     String id;
     String password;
+    String name;
 }

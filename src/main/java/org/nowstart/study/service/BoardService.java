@@ -17,8 +17,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService {
 
-    private final BoardRepository boardRepository;
     private final BoardMapper boardMapper;
+    private final BoardRepository boardRepository;
 
     public BoardResponseVo findAllBoard() {
         List<BoardDto> resultSet = boardRepository.findAll().stream().map(boardMapper::toDto).toList();

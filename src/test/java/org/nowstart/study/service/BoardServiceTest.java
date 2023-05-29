@@ -25,18 +25,18 @@ import static org.mockito.BDDMockito.given;
 class BoardServiceTest {
 
     @InjectMocks
-    BoardService boardService;
+    BoardService service;
     @Mock
-    BoardRepository boardRepository;
+    BoardRepository repository;
     @Spy
-    BoardMapper boardMapper;
+    BoardMapper mapper;
 
     @Test
     void findAllBoard() {
         //given
 
         //when
-        BoardResponseVo result = boardService.findAllBoard();
+        BoardResponseVo result = service.findAllBoard();
 
         //then
         assertThat(result.getFlag()).isEqualTo("0000");
@@ -55,7 +55,7 @@ class BoardServiceTest {
         //when
 
         //then
-        assertDoesNotThrow(() -> boardService.saveBoard(boardDto));
+        assertDoesNotThrow(() -> service.saveBoard(boardDto));
     }
 
     @Test
@@ -69,11 +69,11 @@ class BoardServiceTest {
                 .build();
 
         //when
-        given(boardRepository.findById(any())).willReturn(Optional.of(BoardEntity.builder()
-            .build()));
+        given(repository.findById(any())).willReturn(Optional.of(BoardEntity.builder()
+                .build()));
 
         //then
-        assertDoesNotThrow(() -> boardService.updateBoard(id, boardDto));
+        assertDoesNotThrow(() -> service.updateBoard(id, boardDto));
     }
 
     @Test
@@ -87,10 +87,10 @@ class BoardServiceTest {
                 .build();
 
         //when
-        given(boardRepository.findById(any())).willThrow(NoSuchElementException.class);
+        given(repository.findById(any())).willThrow(NoSuchElementException.class);
 
         //then
-        assertThatThrownBy(() -> boardService.updateBoard(id, boardDto)).isInstanceOf(NoSuchElementException.class);
+        assertThatThrownBy(() -> service.updateBoard(id, boardDto)).isInstanceOf(NoSuchElementException.class);
     }
 
     @Test
@@ -101,6 +101,6 @@ class BoardServiceTest {
         //when
 
         //then
-        assertDoesNotThrow(() -> boardService.deleteBoard(id));
+        assertDoesNotThrow(() -> service.deleteBoard(id));
     }
 }
