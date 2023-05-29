@@ -11,8 +11,6 @@ import lombok.ToString;
 @AllArgsConstructor
 public class BoardRequestVo {
 
-    private String id;
-
     @NotBlank
     @Size(max = 10)
     private String title;

@@ -35,6 +35,6 @@ logging.level:
 #### swagger-ui
 springdoc:
   swagger-ui:
+    use-root-path: true
     disable-swagger-default-url: true
     display-request-duration: true
-    use-root-path: true

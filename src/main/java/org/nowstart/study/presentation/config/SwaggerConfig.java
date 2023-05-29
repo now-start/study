@@ -1,7 +1,5 @@
 package org.nowstart.study.presentation.config;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.servers.Server;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -9,8 +7,9 @@ import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 @Configuration
-@OpenAPIDefinition(servers = {@Server(url = "/", description = "Default Server url")})
 public class SwaggerConfig {
 
     @Bean
@@ -27,7 +26,7 @@ public class SwaggerConfig {
         return GroupedOpenApi
                 .builder()
                 .group("test")
-                .pathsToMatch("/test*")
+                .pathsToMatch("/test*/**")
                 .build();
     }
 
@@ -36,6 +35,7 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .components(new Components())
                 .info(new Info().title("Study API Example")
-                        .version("v0.0.1"));
+                        .version("v0.0.1"))
+                .servers(List.of(new io.swagger.v3.oas.models.servers.Server().url("/").description("Default Server url")));
     }
 }

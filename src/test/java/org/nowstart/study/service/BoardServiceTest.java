@@ -1,7 +1,5 @@
 package org.nowstart.study.service;
 
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,6 +11,9 @@ import org.nowstart.study.domain.mapper.BoardMapper;
 import org.nowstart.study.domain.vo.response.BoardResponseVo;
 import org.nowstart.study.repository.BoardRepository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -46,7 +47,6 @@ class BoardServiceTest {
     void saveBoard() {
         //given
         BoardDto boardDto = BoardDto.builder()
-            .id("testId")
             .title("testTitle")
             .writer("testWriter")
             .contents("testContents")
@@ -61,36 +61,36 @@ class BoardServiceTest {
     @Test
     void updateBoard() {
         //given
+        String id = "testId";
         BoardDto boardDto = BoardDto.builder()
-            .id("testId")
-            .title("testTitle")
-            .writer("testWriter")
-            .contents("testContents")
-            .build();
+                .title("testTitle")
+                .writer("testWriter")
+                .contents("testContents")
+                .build();
 
         //when
         given(boardRepository.findById(any())).willReturn(Optional.of(BoardEntity.builder()
             .build()));
 
         //then
-        assertDoesNotThrow(() -> boardService.updateBoard(boardDto));
+        assertDoesNotThrow(() -> boardService.updateBoard(id, boardDto));
     }
 
     @Test
     void updateBoard_exception() {
         //given
+        String id = "testId";
         BoardDto boardDto = BoardDto.builder()
-            .id("testId")
-            .title("testTitle")
-            .writer("testWriter")
-            .contents("testContents")
-            .build();
+                .title("testTitle")
+                .writer("testWriter")
+                .contents("testContents")
+                .build();
 
         //when
         given(boardRepository.findById(any())).willThrow(NoSuchElementException.class);
 
         //then
-        assertThatThrownBy(() -> boardService.updateBoard(boardDto)).isInstanceOf(NoSuchElementException.class);
+        assertThatThrownBy(() -> boardService.updateBoard(id, boardDto)).isInstanceOf(NoSuchElementException.class);
     }
 
     @Test
