@@ -1,12 +1,17 @@
 package org.nowstart.study.presentation.controller;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.nowstart.study.domain.mapper.UserMapper;
-import org.nowstart.study.domain.vo.request.UserRequestVo;
-import org.nowstart.study.presentation.config.SpringSecurityConfig;
+import org.nowstart.study.config.SpringSecurityConfig;
+import org.nowstart.study.controller.TestController;
+import org.nowstart.study.data.mapper.UserMapper;
+import org.nowstart.study.data.vo.request.UserRequestVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -15,10 +20,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @WebMvcTest({TestController.class, SpringSecurityConfig.class})
 class TestControllerTest {

@@ -1,16 +1,16 @@
 package org.nowstart.study.service;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
-import org.nowstart.study.domain.dto.UserDto;
-import org.nowstart.study.domain.mapper.UserMapper;
+import org.nowstart.study.data.dto.UserDto;
+import org.nowstart.study.data.mapper.UserMapper;
 import org.nowstart.study.repository.UserRepository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @ExtendWith(SpringExtension.class)
 class UserServiceTest {

@@ -1,17 +1,16 @@
 package org.nowstart.study.repository;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.nowstart.study.domain.entity.UserEntity;
-import org.nowstart.study.presentation.config.JpaAuditingConfig;
+import org.nowstart.study.config.JpaAuditingConfig;
+import org.nowstart.study.data.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
-
-import java.util.NoSuchElementException;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Import(JpaAuditingConfig.class)
@@ -30,7 +29,6 @@ class UserRepositoryTest {
         userRepository.save(UserEntity.builder()
                 .id(TEST_ID)
                 .password(TEST_PASSWORD)
-                .name(TEST_NAME)
                 .build());
     }
 
@@ -43,7 +41,6 @@ class UserRepositoryTest {
         //then
         assertThat(result.getId()).isEqualTo(TEST_ID);
         assertThat(result.getPassword()).isEqualTo(TEST_PASSWORD);
-        assertThat(result.getName()).isEqualTo(TEST_NAME);
         assertThat(result.getCreatedDate()).isNotNull();
         assertThat(result.getModifiedDate()).isNotNull();
     }
@@ -59,7 +56,6 @@ class UserRepositoryTest {
         //then
         assertThat(result.getId()).isEqualTo(TEST_ID);
         assertThat(result.getPassword()).isEqualTo(TEST_PASSWORD);
-        assertThat(result.getName()).isEqualTo(TEST_NAME);
     }
 
     @Test

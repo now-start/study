@@ -1,15 +1,14 @@
 package org.nowstart.study.service;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.nowstart.study.domain.dto.BoardDto;
-import org.nowstart.study.domain.mapper.BoardMapper;
-import org.nowstart.study.domain.vo.response.BoardResponseVo;
+import org.nowstart.study.data.dto.BoardDto;
+import org.nowstart.study.data.mapper.BoardMapper;
+import org.nowstart.study.data.vo.response.BoardResponseVo;
 import org.nowstart.study.repository.BoardRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Slf4j
 @Service

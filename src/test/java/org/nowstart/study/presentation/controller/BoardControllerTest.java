@@ -1,10 +1,17 @@
 package org.nowstart.study.presentation.controller;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.nowstart.study.domain.mapper.BoardMapper;
-import org.nowstart.study.domain.vo.request.BoardRequestVo;
-import org.nowstart.study.presentation.config.SpringSecurityConfig;
+import org.nowstart.study.config.SpringSecurityConfig;
+import org.nowstart.study.controller.BoardController;
+import org.nowstart.study.data.mapper.BoardMapper;
+import org.nowstart.study.data.vo.request.BoardRequestVo;
 import org.nowstart.study.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -12,9 +19,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @WebMvcTest({BoardController.class, SpringSecurityConfig.class})
 class BoardControllerTest {
