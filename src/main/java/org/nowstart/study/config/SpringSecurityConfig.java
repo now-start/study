@@ -38,7 +38,7 @@ public class SpringSecurityConfig extends OncePerRequestFilter implements Filter
 
     private static final Long EXPIRED_MS = 60 * 60 * 1000L;
     private final UserService userService;
-    @Value("${jwt.secret:org.nowstart.study}")
+    @Value("${jasypt.encryptor.password:}")
     private String secretKey;
 
     @Bean
