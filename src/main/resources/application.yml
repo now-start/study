@@ -1,34 +1,17 @@
 ############################################
 #### Server
 server.port: 8081
-
-############################################
-#### Spring
 spring:
-  #### Data Source
-  datasource:
-    url: ENC(1KYfZmkwoq4IrFgu5wfj5LVSpCWkioiRjPMZCPYoDCf0QbRrfaTUKAafq1T+Lzvv1waP7cvO+CF8IgVN+fNQRA==)
-    username: ENC(WheizmGq932V4F0HMP5++9nFdtaK+9h8gAPcQyiHpKCWp1mdg9jk2qnjt3WsYJJQ)
-    password: ENC(d6GGRzdrMYq8fCmwBhICbR0fRLGO+EtbjvKODZ8yKqtpk+quXk3q358W17XH4Ohv)
+  profiles.active: local
 
-  #### JPA(h2)
-  h2.console:
-    enabled: true
-    settings.web-allow-others: true
-
+  #### JPA
   jpa:
-    database: h2
     show-sql: true
     properties.hibernate.format_sql: true
-    hibernate.ddl-auto: create
-
-  #### Thymeleaf
-  thymeleaf.cache: false
 
 ############################################
 #### Logging
 logging.level:
-  org.nowstart.study: debug
   org.hibernate.orm.jdbc.bind: trace
 
 ############################################

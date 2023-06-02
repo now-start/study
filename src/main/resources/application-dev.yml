@@ -1,0 +1,10 @@
+#### Spring
+spring:
+  #### Data Source
+  datasource:
+    url: ENC(qkEiUZKZ4O7SpQb5L0jTvgAlroNSDe5hakB7sPVIJZQjhbUHb3tNSUa10TYw5sI5C7hO4b4HcBVg4SPp1or/rpbpAXPgKGQHM14bLUJRUZ/zLnaN0h+CElPF28/JdKBo)
+    username: ENC(ykPU4b2d92GINHIgfvh5ofFHKKXNX8Rs9+cYpnQ9saOdbs/YuXqK8CYh398dTrSe)
+    password: ENC(ZKq9q63PUG8EuAY3NBAp3S3yNmEPGqQZdcRz+hPtimwTbqEnTxFUpukyx7Y42XBY)
+
+  #### JPA
+  jpa.hibernate.ddl-auto: update

@@ -1,0 +1,18 @@
+#### Spring
+spring:
+  #### Data Source
+  datasource:
+    url: ENC(1KYfZmkwoq4IrFgu5wfj5LVSpCWkioiRjPMZCPYoDCf0QbRrfaTUKAafq1T+Lzvv1waP7cvO+CF8IgVN+fNQRA==)
+    username: ENC(WheizmGq932V4F0HMP5++9nFdtaK+9h8gAPcQyiHpKCWp1mdg9jk2qnjt3WsYJJQ)
+    password: ENC(d6GGRzdrMYq8fCmwBhICbR0fRLGO+EtbjvKODZ8yKqtpk+quXk3q358W17XH4Ohv)
+
+  #### JPA
+  jpa.hibernate.ddl-auto: create
+
+  #### JPA(h2)
+  h2.console:
+    enabled: true
+    settings.web-allow-others: true
+
+  #### Thymeleaf
+  thymeleaf.cache: false
