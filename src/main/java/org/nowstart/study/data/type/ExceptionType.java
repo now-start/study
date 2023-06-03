@@ -7,6 +7,7 @@ public enum ExceptionType {
     //bindingException
     NOT_BLANK("5000", "공백일 수 없음"),
     SIZE("5001", "사이즈가 잘못됨"),
+    VALID_ENUM("5001", "파라미터 형식이 잘못됨"),
 
     //customException
     NO_SUCH_ELEMENT_EXCEPTION("8001", "DB값이 없음"),

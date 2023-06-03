@@ -10,6 +10,7 @@ import org.mockito.Spy;
 import org.nowstart.study.data.dto.UserDto;
 import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
@@ -21,15 +22,17 @@ class UserServiceTest {
     UserRepository repository;
     @Spy
     Mapper mapper;
+    @Spy
+    PasswordEncoder passwordEncoder;
 
     @Test
     void saveUser() {
         //given
         UserDto userDto = UserDto.builder()
-                .id("id")
-                .password("password")
-                .name("name")
-                .build();
+            .id("id")
+            .password("password")
+            .name("name")
+            .build();
 
         //when
 

@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.nowstart.study.data.dto.UserDto;
 import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.repository.UserRepository;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,12 +32,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return userRepository.findById(userName).map(user -> User.builder()
-                .username(user.getUsername())
-                .password(passwordEncoder.encode(user.getPassword()))
-                .roles(user.getRoles().toArray(String[]::new))
-                .build())
-            .orElseThrow(() -> new UsernameNotFoundException("해당하는 유저를 찾을 수 없음"));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findById(username).orElseThrow(() -> new UsernameNotFoundException("해당하는 유저를 찾을 수 없음"));
     }
 }
