@@ -4,7 +4,7 @@ import com.sun.jdi.request.DuplicateRequestException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.nowstart.study.data.dto.UserDto;
-import org.nowstart.study.data.mapper.UserMapper;
+import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.repository.UserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
-    private final UserMapper userMapper;
+    private final Mapper mapper;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -29,7 +29,7 @@ public class UserService implements UserDetailsService {
         userRepository.findById(userDto.getId()).ifPresent(e -> {
             throw new DuplicateRequestException();
         });
-        userRepository.save(userMapper.toEntity(userDto));
+        userRepository.save(mapper.toEntity(userDto, passwordEncoder.encode(userDto.getPassword())));
     }
 
     @Override

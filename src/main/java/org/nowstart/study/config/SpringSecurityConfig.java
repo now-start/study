@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -42,6 +41,8 @@ public class SpringSecurityConfig extends OncePerRequestFilter implements Filter
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring().requestMatchers(
+            "/user/**",
+            "/",
             "/h2-console/**",
             "/swagger-ui.html",
             "/swagger-ui/**",
@@ -61,23 +62,15 @@ public class SpringSecurityConfig extends OncePerRequestFilter implements Filter
             .cors().disable()
             .headers().frameOptions().sameOrigin().and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .addFilterBefore(this, UsernamePasswordAuthenticationFilter.class)
+            .addFilterAfter(this, UsernamePasswordAuthenticationFilter.class)
             .authorizeHttpRequests()
             .anyRequest().authenticated().and()
             .formLogin()
             .successHandler((request, response, authentication) -> {
                 String username = request.getParameter("username");
-                log.info("[SpringSecurityConfig][filterChain][success] : {}", username);
                 String token = JwtUtil.createJwt(username, secretKey, EXPIRED_MS);
+                log.info("[SpringSecurityConfig][filterChain][success] : {} {}", username, token);
                 response.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token);
-                ResponseCookie cookie = ResponseCookie.from("refreshToken", token)
-                    .maxAge(24 * 60 * 60)
-                    .path("/")
-                    .secure(true)
-                    .sameSite("None")
-                    .httpOnly(true)
-                    .build();
-                response.setHeader("Set-Cookie", cookie.toString());
             }).permitAll().and()
             .build();
     }

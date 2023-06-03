@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.nowstart.study.data.dto.UserDto;
-import org.nowstart.study.data.mapper.UserMapper;
+import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.repository.UserRepository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -20,7 +20,7 @@ class UserServiceTest {
     @Mock
     UserRepository repository;
     @Spy
-    UserMapper mapper;
+    Mapper mapper;
 
     @Test
     void saveUser() {

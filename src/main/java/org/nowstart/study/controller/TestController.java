@@ -9,7 +9,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.nowstart.study.data.dto.UserDto;
-import org.nowstart.study.data.mapper.UserMapper;
+import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.vo.request.UserRequestVo;
 import org.nowstart.study.data.vo.response.CommResponseVo;
 import org.springframework.http.MediaType;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class TestController {
 
-    private final UserMapper userMapper;
+    private final Mapper mapper;
 
     @GetMapping("/test1")
     @Operation(summary = "Test1", description = "testController", responses = {
@@ -62,14 +62,14 @@ public class TestController {
     @GetMapping("/test5")
     public CommResponseVo<UserDto> mapstructController(@Valid UserRequestVo userRequestVo) {
         return CommResponseVo.<UserDto>builder()
-            .resultSet(List.of(userMapper.toDto(userRequestVo)))
+            .resultSet(List.of(mapper.toDto(userRequestVo)))
             .build();
     }
 
     @GetMapping("/test6/{id}")
     public CommResponseVo<UserDto> pathParamController(@Valid UserRequestVo userRequestVo) {
         return CommResponseVo.<UserDto>builder()
-            .resultSet(List.of(userMapper.toDto(userRequestVo)))
+            .resultSet(List.of(mapper.toDto(userRequestVo)))
             .build();
     }
 }

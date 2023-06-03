@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.nowstart.study.data.dto.BoardDto;
-import org.nowstart.study.data.mapper.BoardMapper;
+import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.vo.request.BoardRequestVo;
 import org.nowstart.study.data.vo.response.CommResponseVo;
 import org.nowstart.study.service.BoardService;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class BoardController {
 
-    private final BoardMapper boardMapper;
+    private final Mapper mapper;
     private final BoardService boardService;
 
     @GetMapping("/board/list")
@@ -33,14 +33,14 @@ public class BoardController {
     @PostMapping("/board")
     public CommResponseVo<BoardDto> saveBoard(@RequestBody @Valid BoardRequestVo boardRequestVo) {
         log.info("[BoardController][saveBoard][/board] : {}", boardRequestVo.toString());
-        boardService.saveBoard(boardMapper.toDto(boardRequestVo));
+        boardService.saveBoard(mapper.toDto(boardRequestVo));
         return CommResponseVo.<BoardDto>builder().build();
     }
 
     @PutMapping("/board/{id}")
     public CommResponseVo<BoardDto> updateBoard(@PathVariable String id, @RequestBody @Valid BoardRequestVo boardRequestVo) {
         log.info("[BoardController][updateBoard][/board] : {}", boardRequestVo.toString());
-        boardService.updateBoard(id, boardMapper.toDto(boardRequestVo));
+        boardService.updateBoard(id, mapper.toDto(boardRequestVo));
         return CommResponseVo.<BoardDto>builder().build();
     }
 

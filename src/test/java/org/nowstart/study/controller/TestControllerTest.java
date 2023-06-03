@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.nowstart.study.config.SpringSecurityConfig;
-import org.nowstart.study.data.mapper.UserMapper;
+import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.vo.request.UserRequestVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -27,7 +27,7 @@ class TestControllerTest {
     MockMvc mvc;
 
     @MockBean
-    UserMapper mapper;
+    Mapper mapper;
 
     @Test
     void testController() throws Exception {

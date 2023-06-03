@@ -15,7 +15,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.nowstart.study.data.dto.BoardDto;
 import org.nowstart.study.data.entity.BoardEntity;
-import org.nowstart.study.data.mapper.BoardMapper;
+import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.vo.response.CommResponseVo;
 import org.nowstart.study.repository.BoardRepository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -28,7 +28,7 @@ class BoardServiceTest {
     @Mock
     BoardRepository repository;
     @Spy
-    BoardMapper mapper;
+    Mapper mapper;
 
     @Test
     void findAllBoard() {

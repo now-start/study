@@ -6,7 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.nowstart.study.config.SpringSecurityConfig;
-import org.nowstart.study.data.mapper.UserMapper;
+import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.vo.request.UserRequestVo;
 import org.nowstart.study.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ class UserControllerTest {
     MockMvc mvc;
 
     @MockBean
-    UserMapper mapper;
+    Mapper mapper;
 
     @MockBean
     UserService service;

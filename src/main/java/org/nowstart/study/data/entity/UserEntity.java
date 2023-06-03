@@ -33,7 +33,7 @@ public class UserEntity extends CommEntity implements UserDetails, Persistable<S
     private final List<String> roles = new ArrayList<>();
 
     @Builder
-    public UserEntity(String id, String password, String name) {
+    public UserEntity(String id, String password) {
         this.id = id;
         this.password = password;
     }

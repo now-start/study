@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.nowstart.study.config.SpringSecurityConfig;
-import org.nowstart.study.data.mapper.BoardMapper;
+import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.vo.request.BoardRequestVo;
 import org.nowstart.study.service.BoardService;
 import org.nowstart.study.utils.JwtUtil;
@@ -31,7 +31,7 @@ class BoardControllerTest {
     MockMvc mvc;
 
     @MockBean
-    BoardMapper mapper;
+    Mapper mapper;
 
     @MockBean
     BoardService boardService;
