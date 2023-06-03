@@ -36,7 +36,7 @@ public class ControllerAdvice {
     }
 
     @ExceptionHandler(BindException.class)
-    public ResponseEntity<CommResponseVo> handleBindException(BindException ex) {
+    public ResponseEntity<CommResponseVo<Object>> handleBindException(BindException ex) {
         log.error(ex.getMessage(), ex);
 
         ExceptionType exceptionType;
@@ -56,29 +56,27 @@ public class ControllerAdvice {
         }
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(CommResponseVo.builder()
-                        .flag(exceptionType.getFlag())
-                        .message(message.toString())
-                        .build());
-
+            .body(CommResponseVo.builder()
+                .flag(exceptionType.getFlag())
+                .message(message.toString())
+                .build());
     }
 
     @ExceptionHandler(Throwable.class)
-    public ResponseEntity<CommResponseVo> handleThrowable(Throwable th) {
-        log.error(th.getMessage(), th);
+    public ResponseEntity<CommResponseVo<Object>> handleThrowable(Throwable ex) {
+        log.error(ex.getMessage(), ex);
 
         ExceptionType exceptionType;
         try {
-            exceptionType = ExceptionType.valueOf(toUpperSnakeCase(th.getClass().getSimpleName()));
+            exceptionType = ExceptionType.valueOf(toUpperSnakeCase(ex.getClass().getSimpleName()));
         } catch (Exception e) {
             exceptionType = ExceptionType.UNDEFINED;
         }
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(CommResponseVo.builder()
-                    .flag(exceptionType.getFlag())
-                    .message(StringUtils.defaultIfEmpty(th.getMessage(), exceptionType.getMessage()))
-                        .build());
-
+            .body(CommResponseVo.builder()
+                .flag(exceptionType.getFlag())
+                .message(StringUtils.defaultIfEmpty(ex.getMessage(), exceptionType.getMessage()))
+                .build());
     }
 }

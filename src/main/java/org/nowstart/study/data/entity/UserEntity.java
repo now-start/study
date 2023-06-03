@@ -3,9 +3,6 @@ package org.nowstart.study.data.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
@@ -26,15 +23,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserEntity extends CommEntity implements UserDetails, Persistable<String> {
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private final List<String> roles = new ArrayList<>();
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String id;
 
     @Column
     String password;
+
+    @ElementCollection
+    private final List<String> roles = new ArrayList<>();
 
     @Builder
     public UserEntity(String id, String password, String name) {
@@ -45,11 +41,6 @@ public class UserEntity extends CommEntity implements UserDetails, Persistable<S
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles.stream().map(SimpleGrantedAuthority::new).toList();
-    }
-
-    @Override
-    public boolean isNew() {
-        return getCreatedDate() == null;
     }
 
     @Override
@@ -80,5 +71,10 @@ public class UserEntity extends CommEntity implements UserDetails, Persistable<S
     @Override
     public boolean isEnabled() {
         return false;
+    }
+
+    @Override
+    public boolean isNew() {
+        return getCreatedDate() == null;
     }
 }

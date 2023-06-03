@@ -5,13 +5,11 @@ import org.mapstruct.ReportingPolicy;
 import org.nowstart.study.data.dto.UserDto;
 import org.nowstart.study.data.entity.UserEntity;
 import org.nowstart.study.data.vo.request.UserRequestVo;
-import org.nowstart.study.data.vo.response.UserResponseVo;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface UserMapper {
-    UserDto toDto(UserRequestVo userRequestVo);
 
-    UserResponseVo toVo(UserDto userVo);
+    UserDto toDto(UserRequestVo userRequestVo);
 
     UserEntity toEntity(UserDto userDto);
 }

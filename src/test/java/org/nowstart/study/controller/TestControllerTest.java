@@ -1,4 +1,4 @@
-package org.nowstart.study.presentation.controller;
+package org.nowstart.study.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.nowstart.study.config.SpringSecurityConfig;
-import org.nowstart.study.controller.TestController;
 import org.nowstart.study.data.mapper.UserMapper;
 import org.nowstart.study.data.vo.request.UserRequestVo;
 import org.springframework.beans.factory.annotation.Autowired;

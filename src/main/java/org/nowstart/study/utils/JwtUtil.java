@@ -11,9 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class JwtUtil {
 
-    public static String createJwt(String userName, String secretKey, Long expiredMs) {
+    public static String createJwt(String username, String secretKey, Long expiredMs) {
         return Jwts.builder()
-            .claim("username", userName)
+            .claim("username", username)
             .setIssuedAt(new Date(System.currentTimeMillis()))
             .setExpiration(new Date(System.currentTimeMillis() + expiredMs))
             .signWith(SignatureAlgorithm.HS256, secretKey)

@@ -13,11 +13,12 @@ This project is designed to study Spring Boot 3.X, CI/CD, and various architectu
 
 * Java 17
 * Spring-Boot 3.0.4
-* Jacoco
 * Mapstruct 1.5.3
 * SpringDoc 2.0.4
 * Querydsl 5.0.0
 * Jasypt 3.0.5
+* Jwt 0.9.1
+* Jacoco plugin
 * DB
   * H2
   * MariaDB

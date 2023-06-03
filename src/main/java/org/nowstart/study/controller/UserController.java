@@ -3,6 +3,7 @@ package org.nowstart.study.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.nowstart.study.data.dto.UserDto;
 import org.nowstart.study.data.mapper.UserMapper;
 import org.nowstart.study.data.vo.request.UserRequestVo;
 import org.nowstart.study.data.vo.response.CommResponseVo;
@@ -20,10 +21,10 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/user")
-    public CommResponseVo saveUser(@RequestBody @Valid UserRequestVo userRequestVo) {
+    public CommResponseVo<UserDto> saveUser(@RequestBody @Valid UserRequestVo userRequestVo) {
         log.info("[UserController][saveUser][/user]");
         userService.saveUser(userMapper.toDto(userRequestVo));
-        return CommResponseVo.builder().build();
+        return CommResponseVo.<UserDto>builder().build();
     }
 
 }

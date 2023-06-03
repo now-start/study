@@ -1,11 +1,10 @@
 package org.nowstart.study.service;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.nowstart.study.data.dto.BoardDto;
 import org.nowstart.study.data.mapper.BoardMapper;
-import org.nowstart.study.data.vo.response.BoardResponseVo;
+import org.nowstart.study.data.vo.response.CommResponseVo;
 import org.nowstart.study.repository.BoardRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,11 +18,10 @@ public class BoardService {
     private final BoardMapper boardMapper;
     private final BoardRepository boardRepository;
 
-    public BoardResponseVo findAllBoard() {
-        List<BoardDto> resultSet = boardRepository.findAll().stream().map(boardMapper::toDto).toList();
-        return BoardResponseVo.builder()
-                .resultSet(resultSet)
-                .build();
+    public CommResponseVo<BoardDto> findAllBoard() {
+        return CommResponseVo.<BoardDto>builder()
+            .resultSet(boardRepository.findAll().stream().map(boardMapper::toDto).toList())
+            .build();
     }
 
     public void saveBoard(BoardDto boardDto) {

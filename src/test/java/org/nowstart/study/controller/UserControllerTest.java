@@ -1,4 +1,4 @@
-package org.nowstart.study.presentation.controller;
+package org.nowstart.study.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.nowstart.study.config.SpringSecurityConfig;
-import org.nowstart.study.controller.UserController;
 import org.nowstart.study.data.mapper.UserMapper;
 import org.nowstart.study.data.vo.request.UserRequestVo;
 import org.nowstart.study.service.UserService;

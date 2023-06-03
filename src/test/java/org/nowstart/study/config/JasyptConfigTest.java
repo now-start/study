@@ -1,11 +1,11 @@
-package org.nowstart.study.presentation.config;
+package org.nowstart.study.config;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class JasyptConfigTest {
 

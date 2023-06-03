@@ -16,7 +16,7 @@ import org.mockito.Spy;
 import org.nowstart.study.data.dto.BoardDto;
 import org.nowstart.study.data.entity.BoardEntity;
 import org.nowstart.study.data.mapper.BoardMapper;
-import org.nowstart.study.data.vo.response.BoardResponseVo;
+import org.nowstart.study.data.vo.response.CommResponseVo;
 import org.nowstart.study.repository.BoardRepository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -35,7 +35,7 @@ class BoardServiceTest {
         //given
 
         //when
-        BoardResponseVo result = service.findAllBoard();
+        CommResponseVo<BoardDto> result = service.findAllBoard();
 
         //then
         assertThat(result.getFlag()).isEqualTo("0000");
