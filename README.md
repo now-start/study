@@ -1,5 +1,5 @@
 # study
-[![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/now-start/study/main/.github/badges/jacoco.json)](https://github.com/now-start/study/actions/workflows/pr.yml)
+[![codecov](https://codecov.io/gh/now-start/study/branch/main/graph/badge.svg?token=6HKOOSGG7L)](https://codecov.io/gh/now-start/study)
 
 This project is designed to study Spring Boot 3.X, CI/CD, and various architectures.
 
