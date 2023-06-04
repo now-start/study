@@ -1,8 +1,6 @@
 # study
 This project is designed to study Spring Boot 3.X, CI/CD, and various architectures.
 
-## Introduction
-
 ## Demo
 * [API Document](https://study.nowstart.org)
 * [DataBase Console](https://study.nowstart.org/h2-console)
