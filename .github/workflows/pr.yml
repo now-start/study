@@ -25,6 +25,9 @@ jobs:
       - name: Run test
         run: ./gradlew test
 
+      - name: Run Test Coverage
+        run: ./gradlew jacocoTestReport
+
       - name: Generate JaCoCo Badge
         id: jacoco
         uses: cicirello/jacoco-badge-generator@v2
