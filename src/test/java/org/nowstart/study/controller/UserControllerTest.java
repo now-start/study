@@ -1,6 +1,7 @@
 package org.nowstart.study.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,6 +39,7 @@ class UserControllerTest {
 
         //when
         MvcResult result = mvc.perform(post("/user")
+            .with(csrf())
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody)).andReturn();

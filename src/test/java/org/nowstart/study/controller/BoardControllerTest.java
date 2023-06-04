@@ -1,6 +1,7 @@
 package org.nowstart.study.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -52,9 +53,10 @@ class BoardControllerTest {
 
         //when
         MvcResult result = mvc.perform(post("/board")
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestBody)).andReturn();
+            .with(csrf())
+            .accept(MediaType.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(requestBody)).andReturn();
 
         //then
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
@@ -68,9 +70,10 @@ class BoardControllerTest {
 
         //when
         MvcResult result = mvc.perform(put("/board/1")
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestBody)).andReturn();
+            .with(csrf())
+            .accept(MediaType.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(requestBody)).andReturn();
 
         //then
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
@@ -82,7 +85,8 @@ class BoardControllerTest {
 
         //when
         MvcResult result = mvc.perform(delete("/board/2")
-                .accept(MediaType.APPLICATION_JSON)).andReturn();
+            .with(csrf())
+            .accept(MediaType.APPLICATION_JSON)).andReturn();
 
         //then
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
