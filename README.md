@@ -1,4 +1,5 @@
 # study
+![build](https://github.com/now-start/study/actions/workflows/build.yml/badge.svg)
 [![codecov](https://codecov.io/gh/now-start/study/branch/main/graph/badge.svg?token=6HKOOSGG7L)](https://codecov.io/gh/now-start/study)
 
 This project is designed to study Spring Boot 3.X, CI/CD, and various architectures.
