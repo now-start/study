@@ -87,8 +87,9 @@ jacocoTestReport {
             fileTree(dir: it, exclude: [
                     "org/nowstart/study/*Application*",
                     "org/nowstart/study/config/*",
-                    "org/nowstart/study/exception/*",
                     "org/nowstart/study/data/*",
+                    "org/nowstart/study/exception/*",
+                    "org/nowstart/study/utils/*"
             ])
         }))
     }
@@ -125,8 +126,9 @@ jacocoTestCoverageVerification {
             excludes = [
                     "org.nowstart.study.*Application*",
                     'org.nowstart.study.config.*',
-                    'org.nowstart.study.exception.*',
                     'org.nowstart.study.data.*',
+                    'org.nowstart.study.exception.*',
+                    "org.nowstart.study.utils.*"
             ]
         }
     }
