@@ -1,4 +1,4 @@
-package org.nowstart.study.service;
+package org.nowstart.study.service.serviceimpl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,7 +24,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 class BoardServiceTest {
 
     @InjectMocks
-    BoardService service;
+    BoardServiceImpl service;
     @Mock
     BoardRepository repository;
     @Spy

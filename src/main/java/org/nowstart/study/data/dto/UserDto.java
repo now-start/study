@@ -8,8 +8,8 @@ import org.nowstart.study.data.type.RolesType;
 @Builder
 public class UserDto {
 
-    String id;
-    String password;
-    String name;
-    RolesType role;
+    private String id;
+    private String password;
+    private String name;
+    private RolesType role;
 }

@@ -1,4 +1,4 @@
-package org.nowstart.study.service;
+package org.nowstart.study.service.serviceimpl;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -7,6 +7,7 @@ import static org.mockito.BDDMockito.given;
 
 import com.sun.jdi.request.DuplicateRequestException;
 import java.util.Optional;
+import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,6 +17,7 @@ import org.nowstart.study.data.dto.UserDto;
 import org.nowstart.study.data.entity.UserEntity;
 import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -24,7 +26,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 class UserServiceTest {
 
     @InjectMocks
-    UserService service;
+    UserServiceImpl service;
     @Mock
     UserRepository repository;
     @Spy
@@ -90,8 +92,9 @@ class UserServiceTest {
         given(repository.findById(any())).willReturn(Optional.empty());
 
         //when
+        UserDetails userDetails = service.loadUserByUsername(userDto.getId());
 
         //then
-        assertThatThrownBy(() -> service.loadUserByUsername(userDto.getId())).isInstanceOf(UsernameNotFoundException.class);
+        assertThatThrownBy((ThrowableAssert.ThrowingCallable) userDetails).isInstanceOf(UsernameNotFoundException.class);
     }
 }

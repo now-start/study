@@ -21,19 +21,19 @@ public class BoardEntity extends CommEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column
-    String title;
+    private String title;
 
     @Column
-    String writer;
+    private String writer;
 
     @Column
-    String contents;
+    private String contents;
 
     @ManyToOne
-    UserEntity userEntity;
+    private UserEntity userEntity;
 
     @Builder
     public BoardEntity(String title, String writer, String contents) {

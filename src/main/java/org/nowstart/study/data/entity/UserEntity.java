@@ -25,7 +25,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class UserEntity extends CommEntity implements UserDetails, Persistable<String> {
 
     @Enumerated(EnumType.STRING)
-    RolesType role;
+    private RolesType role;
     @Id
     private String id;
     @Column

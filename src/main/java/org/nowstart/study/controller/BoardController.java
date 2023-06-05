@@ -7,7 +7,7 @@ import org.nowstart.study.data.dto.BoardDto;
 import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.vo.request.BoardRequestVo;
 import org.nowstart.study.data.vo.response.CommResponseVo;
-import org.nowstart.study.service.BoardService;
+import org.nowstart.study.service.serviceimpl.BoardServiceImpl;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BoardController {
 
     private final Mapper mapper;
-    private final BoardService boardService;
+    private final BoardServiceImpl boardService;
 
     @GetMapping("/board/list")
     public CommResponseVo<BoardDto> findAllBoard() {

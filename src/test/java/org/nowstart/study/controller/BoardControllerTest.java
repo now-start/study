@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.vo.request.BoardRequestVo;
-import org.nowstart.study.service.BoardService;
+import org.nowstart.study.service.serviceimpl.BoardServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -31,7 +31,7 @@ class BoardControllerTest {
     Mapper mapper;
 
     @MockBean
-    BoardService boardService;
+    BoardServiceImpl boardService;
 
     @Test
     void findAllBoard() throws Exception {

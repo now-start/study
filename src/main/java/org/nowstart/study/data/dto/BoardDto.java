@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 public class BoardDto {
 
-    String title;
-    String writer;
-    String contents;
+    private String title;
+    private String writer;
+    private String contents;
 }
