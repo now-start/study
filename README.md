@@ -30,11 +30,13 @@ This project is designed to study Spring Boot 3.X, CI/CD, and various architectu
 ```shell
 gradlew clean build -x test
 ```
-* You must enter a jasypt password
+* You must enter a `${PASSWORD}`
 ```shell
-java -Djasypt.encryptor.password=${PASSWORD} -Dspring.profiles.active=${PROFILE} -jar study-0.0.1-SNAPSHOT.jar
+java -Dspring.security.password=${PASSWORD} -Dspring.profiles.active=${PROFILE} -jar study-0.0.1-SNAPSHOT.jar
 ```
-* If you don't know the jasypt password or want to use a different DB, you must create a `application-${PROFILE}.yml` file and enter a `${PROFILE}` environment variable
+
+* If you don't know the password or want to use a different DB, you must create a `application-${PROFILE}.yml` file and
+  enter a `${PROFILE}` environment variable
   * `url`: database url
   * `username`: database id
   * `password`: database password
