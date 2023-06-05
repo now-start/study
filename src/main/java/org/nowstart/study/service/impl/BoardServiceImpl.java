@@ -1,10 +1,15 @@
-package org.nowstart.study.service.serviceimpl;
+package org.nowstart.study.service.impl;
 
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.nowstart.study.data.dto.BoardDto;
+import org.nowstart.study.data.entity.BoardEntity;
+import org.nowstart.study.data.entity.UserEntity;
 import org.nowstart.study.data.mapper.Mapper;
+import org.nowstart.study.data.type.RolesType;
 import org.nowstart.study.data.vo.response.CommResponseVo;
+import org.nowstart.study.exception.SecurityException;
 import org.nowstart.study.repository.BoardRepository;
 import org.nowstart.study.service.BoardService;
 import org.springframework.stereotype.Service;
@@ -30,10 +35,20 @@ public class BoardServiceImpl implements BoardService {
     }
 
     public void updateBoard(String id, BoardDto boardDto) {
-        boardRepository.findById(id).orElseThrow().update(boardDto);
+        BoardEntity boardEntity = boardRepository.findById(id).orElseThrow();
+        if (!Objects.requireNonNull(boardEntity.getUserEntity().getId()).equals(boardDto.getUserEntity().getId())) {
+            throw new SecurityException();
+        }
+        boardEntity.update(boardDto);
     }
 
-    public void deleteBoard(String id) {
-        boardRepository.deleteById(id);
+    public void deleteBoard(String id, UserEntity userEntity) {
+        boardRepository.findById(id).ifPresent(boardEntity -> {
+            if (Objects.equals(userEntity.getRole().getRole(), RolesType.ADMIN.getRole()) || Objects.requireNonNull(boardEntity.getUserEntity().getId()).equals(userEntity.getId())) {
+                boardRepository.deleteById(id);
+            } else {
+                throw new SecurityException();
+            }
+        });
     }
 }

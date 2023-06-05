@@ -15,9 +15,5 @@ public class BoardRequestVo {
     @Size(max = 10)
     private String title;
 
-    @NotBlank
-    @Size(max = 10)
-    private String writer;
-
     private String contents;
 }

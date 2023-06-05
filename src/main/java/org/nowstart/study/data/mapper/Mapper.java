@@ -14,7 +14,7 @@ public interface Mapper {
 
     BoardDto toDto(BoardEntity boardEntity);
 
-    BoardDto toDto(BoardRequestVo boardRequestVo);
+    BoardDto toDto(BoardRequestVo boardRequestVo, UserEntity userEntity);
 
     UserDto toDto(UserRequestVo userRequestVo);
 

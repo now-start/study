@@ -27,24 +27,20 @@ public class BoardEntity extends CommEntity {
     private String title;
 
     @Column
-    private String writer;
-
-    @Column
     private String contents;
 
     @ManyToOne
     private UserEntity userEntity;
 
     @Builder
-    public BoardEntity(String title, String writer, String contents) {
+    public BoardEntity(String title, String contents, UserEntity userEntity) {
         this.title = title;
-        this.writer = writer;
         this.contents = contents;
+        this.userEntity = userEntity;
     }
 
     public void update(BoardDto boardDto) {
         this.title = boardDto.getTitle();
-        this.writer = boardDto.getWriter();
         this.contents = boardDto.getContents();
     }
 }

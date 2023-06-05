@@ -1,4 +1,4 @@
-package org.nowstart.study.service.serviceimpl;
+package org.nowstart.study.service.impl;
 
 import com.sun.jdi.request.DuplicateRequestException;
 import lombok.RequiredArgsConstructor;
