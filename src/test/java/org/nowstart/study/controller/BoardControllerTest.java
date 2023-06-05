@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.vo.request.BoardRequestVo;
-import org.nowstart.study.service.serviceimpl.BoardServiceImpl;
+import org.nowstart.study.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -31,7 +31,7 @@ class BoardControllerTest {
     Mapper mapper;
 
     @MockBean
-    BoardServiceImpl boardService;
+    BoardService boardService;
 
     @Test
     void findAllBoard() throws Exception {
@@ -49,7 +49,7 @@ class BoardControllerTest {
     void saveBoard() throws Exception {
         //given
         ObjectMapper objectMapper = new ObjectMapper();
-        String requestBody = objectMapper.writeValueAsString(new BoardRequestVo("title", "writer", "contents"));
+        String requestBody = objectMapper.writeValueAsString(new BoardRequestVo("title", "contents"));
 
         //when
         MvcResult result = mvc.perform(post("/board")
@@ -66,7 +66,7 @@ class BoardControllerTest {
     void updateBoard() throws Exception {
         //given
         ObjectMapper objectMapper = new ObjectMapper();
-        String requestBody = objectMapper.writeValueAsString(new BoardRequestVo("title", "writer", "contents"));
+        String requestBody = objectMapper.writeValueAsString(new BoardRequestVo("title", "contents"));
 
         //when
         MvcResult result = mvc.perform(put("/board/1")

@@ -10,6 +10,7 @@ public enum ExceptionType {
     VALID_ENUM("5001", "파라미터 형식이 잘못됨"),
 
     //customException
+    SECURITY_EXCEPTION("4003", "인증/인가 잘못됨"),
     NO_SUCH_ELEMENT_EXCEPTION("8001", "DB값이 없음"),
     USERNAME_NOT_FOUND_EXCEPTION("8001", "DB값이 없음"),
     DUPLICATE_REQUEST_EXCEPTION("8002", "키 값 중복"),
