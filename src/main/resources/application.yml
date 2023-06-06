@@ -19,3 +19,4 @@ logging.level:
 springdoc:
   swagger-ui:
     display-request-duration: true
+    use-root-path: true
