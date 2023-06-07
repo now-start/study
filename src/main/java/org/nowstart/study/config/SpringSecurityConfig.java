@@ -48,7 +48,6 @@ public class SpringSecurityConfig {
             .requestMatchers(HttpMethod.POST, "/user").hasRole(RolesType.ADMIN.getRole())
             .anyRequest().authenticated().and()
             .formLogin()
-            .defaultSuccessUrl("/swagger-ui.html")
 //            .successHandler((request, response, authentication) -> {
 //                String username = request.getParameter("username");
 //                String token = JwtUtil.createJwt(username, secretKey, EXPIRED_MS);
