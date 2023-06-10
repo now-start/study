@@ -6,6 +6,7 @@ import org.nowstart.study.data.dto.BoardDto;
 import org.nowstart.study.data.dto.UserDto;
 import org.nowstart.study.data.entity.BoardEntity;
 import org.nowstart.study.data.entity.UserEntity;
+import org.nowstart.study.data.vo.request.BoardFindRequestVo;
 import org.nowstart.study.data.vo.request.BoardRequestVo;
 import org.nowstart.study.data.vo.request.UserRequestVo;
 
@@ -22,4 +23,7 @@ public interface Mapper {
 
     @Mapping(target = "password", source = "password")
     UserEntity toEntity(UserDto userDto, String password);
+
+    @Mapping(target = "userEntity.id", source = "writer")
+    BoardDto toDto(BoardFindRequestVo boardFindRequestVo);
 }

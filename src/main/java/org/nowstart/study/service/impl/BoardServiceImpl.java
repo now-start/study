@@ -10,7 +10,7 @@ import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.type.RolesType;
 import org.nowstart.study.data.vo.response.CommResponseVo;
 import org.nowstart.study.exception.SecurityException;
-import org.nowstart.study.repository.BoardRepository;
+import org.nowstart.study.repository.BoardRepositoryBoard;
 import org.nowstart.study.service.BoardService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,11 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class BoardServiceImpl implements BoardService {
 
     private final Mapper mapper;
-    private final BoardRepository boardRepository;
+    private final BoardRepositoryBoard boardRepository;
 
-    public CommResponseVo<BoardDto> findAllBoard() {
+    public CommResponseVo<BoardDto> findAllBoard(BoardDto boardDto) {
         return CommResponseVo.<BoardDto>builder()
-            .resultSet(boardRepository.findAll().stream().map(mapper::toDto).toList())
+            .resultSet(boardRepository.findAll(boardDto).stream().map(mapper::toDto).toList())
             .build();
     }
 

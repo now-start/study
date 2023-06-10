@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface BoardService {
 
-    CommResponseVo<BoardDto> findAllBoard();
+    CommResponseVo<BoardDto> findAllBoard(BoardDto boardDto);
 
     void saveBoard(BoardDto boardDto);
 

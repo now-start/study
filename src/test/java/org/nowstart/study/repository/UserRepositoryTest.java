@@ -22,7 +22,7 @@ class UserRepositoryTest {
     private static final String UPDATE_TEST_PASSWORD = "5678";
 
     @Autowired
-    UserRepository userRepository;
+    UserRepositoryBoard userRepository;
 
     @BeforeEach
     void init() {

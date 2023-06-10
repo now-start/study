@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.nowstart.study.data.dto.UserDto;
 import org.nowstart.study.data.mapper.Mapper;
-import org.nowstart.study.repository.UserRepository;
+import org.nowstart.study.repository.UserRepositoryBoard;
 import org.nowstart.study.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final Mapper mapper;
-    private final UserRepository userRepository;
+    private final UserRepositoryBoard userRepository;
     private final PasswordEncoder passwordEncoder;
 
 

@@ -15,7 +15,7 @@ import org.mockito.Spy;
 import org.nowstart.study.data.dto.UserDto;
 import org.nowstart.study.data.entity.UserEntity;
 import org.nowstart.study.data.mapper.Mapper;
-import org.nowstart.study.repository.UserRepository;
+import org.nowstart.study.repository.UserRepositoryBoard;
 import org.nowstart.study.service.impl.UserServiceImpl;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,7 +27,7 @@ class UserServiceTest {
     @InjectMocks
     UserServiceImpl service;
     @Mock
-    UserRepository repository;
+    UserRepositoryBoard repository;
     @Spy
     Mapper mapper;
     @Spy

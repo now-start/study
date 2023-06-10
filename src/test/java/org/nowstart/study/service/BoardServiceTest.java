@@ -20,7 +20,7 @@ import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.type.RolesType;
 import org.nowstart.study.data.vo.response.CommResponseVo;
 import org.nowstart.study.exception.SecurityException;
-import org.nowstart.study.repository.BoardRepository;
+import org.nowstart.study.repository.BoardRepositoryBoard;
 import org.nowstart.study.service.impl.BoardServiceImpl;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -30,7 +30,7 @@ class BoardServiceTest {
     @InjectMocks
     BoardServiceImpl service;
     @Mock
-    BoardRepository repository;
+    BoardRepositoryBoard repository;
     @Spy
     Mapper mapper;
 
@@ -39,7 +39,7 @@ class BoardServiceTest {
         //given
 
         //when
-        CommResponseVo<BoardDto> result = service.findAllBoard();
+        CommResponseVo<BoardDto> result = service.findAllBoard(BoardDto.builder().build());
 
         //then
         assertThat(result.getFlag()).isEqualTo("0000");
