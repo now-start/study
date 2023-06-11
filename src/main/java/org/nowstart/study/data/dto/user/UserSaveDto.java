@@ -1,4 +1,4 @@
-package org.nowstart.study.data.dto;
+package org.nowstart.study.data.dto.user;
 
 import lombok.Builder;
 import lombok.Data;
@@ -6,7 +6,7 @@ import org.nowstart.study.data.type.RolesType;
 
 @Data
 @Builder
-public class UserDto {
+public class UserSaveDto {
 
     private String id;
     private String password;

@@ -2,28 +2,29 @@ package org.nowstart.study.data.mapper;
 
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
-import org.nowstart.study.data.dto.BoardDto;
-import org.nowstart.study.data.dto.UserDto;
+import org.nowstart.study.data.dto.board.BoardFindServiceDto;
+import org.nowstart.study.data.dto.board.BoardServiceDto;
+import org.nowstart.study.data.dto.user.UserSaveDto;
 import org.nowstart.study.data.entity.BoardEntity;
 import org.nowstart.study.data.entity.UserEntity;
 import org.nowstart.study.data.vo.request.BoardFindRequestVo;
 import org.nowstart.study.data.vo.request.BoardRequestVo;
 import org.nowstart.study.data.vo.request.UserRequestVo;
+import org.nowstart.study.data.vo.response.BoardResponseVo;
 
 @org.mapstruct.Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface Mapper {
 
-    BoardDto toDto(BoardEntity boardEntity);
+    BoardServiceDto toServiceDto(BoardRequestVo boardRequestVo, UserEntity userEntity);
 
-    BoardDto toDto(BoardRequestVo boardRequestVo, UserEntity userEntity);
+    UserSaveDto toServiceDto(UserRequestVo userRequestVo);
 
-    UserDto toDto(UserRequestVo userRequestVo);
+    BoardFindServiceDto toServiceDto(BoardFindRequestVo boardFindRequestVo);
 
-    BoardEntity toEntity(BoardDto boardDto);
+    BoardEntity toEntity(BoardServiceDto boardServiceDto);
 
     @Mapping(target = "password", source = "password")
-    UserEntity toEntity(UserDto userDto, String password);
+    UserEntity toEntity(UserSaveDto userSaveDto, String password);
 
-    @Mapping(target = "userEntity.id", source = "writer")
-    BoardDto toDto(BoardFindRequestVo boardFindRequestVo);
+    BoardResponseVo toResponseVo(BoardEntity boardEntity);
 }

@@ -49,7 +49,10 @@ class BoardControllerTest {
     void saveBoard() throws Exception {
         //given
         ObjectMapper objectMapper = new ObjectMapper();
-        String requestBody = objectMapper.writeValueAsString(new BoardRequestVo("title", "contents"));
+        String requestBody = objectMapper.writeValueAsString(BoardRequestVo.builder()
+            .title("title")
+            .contents("contents")
+            .build());
 
         //when
         MvcResult result = mvc.perform(post("/board")
@@ -66,7 +69,10 @@ class BoardControllerTest {
     void updateBoard() throws Exception {
         //given
         ObjectMapper objectMapper = new ObjectMapper();
-        String requestBody = objectMapper.writeValueAsString(new BoardRequestVo("title", "contents"));
+        String requestBody = objectMapper.writeValueAsString(BoardRequestVo.builder()
+            .title("title")
+            .contents("contents")
+            .build());
 
         //when
         MvcResult result = mvc.perform(put("/board/1")

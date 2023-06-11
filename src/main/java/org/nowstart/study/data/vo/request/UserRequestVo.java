@@ -2,7 +2,7 @@ package org.nowstart.study.data.vo.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import org.nowstart.study.data.anotation.ValidEnum;
@@ -10,7 +10,7 @@ import org.nowstart.study.data.type.RolesType;
 
 @Getter
 @ToString
-@AllArgsConstructor
+@Builder
 public class UserRequestVo {
     @Size(min = 3)
     @NotBlank

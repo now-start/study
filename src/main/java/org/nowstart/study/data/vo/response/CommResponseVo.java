@@ -3,10 +3,9 @@ package org.nowstart.study.data.vo.response;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
 
 @Getter
-@SuperBuilder
+@Builder
 public class CommResponseVo<T> {
 
     @Builder.Default

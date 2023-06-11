@@ -3,11 +3,12 @@ package org.nowstart.study.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.nowstart.study.data.dto.BoardDto;
+import org.nowstart.study.data.dto.board.BoardServiceDto;
 import org.nowstart.study.data.entity.UserEntity;
 import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.vo.request.BoardFindRequestVo;
 import org.nowstart.study.data.vo.request.BoardRequestVo;
+import org.nowstart.study.data.vo.response.BoardResponseVo;
 import org.nowstart.study.data.vo.response.CommResponseVo;
 import org.nowstart.study.service.BoardService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -28,29 +29,29 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/board/list")
-    public CommResponseVo<BoardDto> findAllBoard(@Valid BoardFindRequestVo boardFindRequestVo) {
+    public CommResponseVo<BoardResponseVo> findAllBoard(@Valid BoardFindRequestVo boardFindRequestVo) {
         log.info("[BoardController][findAllBoard][/board/list]");
-        return boardService.findAllBoard(mapper.toDto(boardFindRequestVo));
+        return boardService.findAllBoard(mapper.toServiceDto(boardFindRequestVo));
     }
 
     @PostMapping("/board")
-    public CommResponseVo<BoardDto> saveBoard(@RequestBody @Valid BoardRequestVo boardRequestVo, @AuthenticationPrincipal UserEntity userEntity) {
+    public CommResponseVo<BoardServiceDto> saveBoard(@RequestBody @Valid BoardRequestVo boardRequestVo, @AuthenticationPrincipal UserEntity userEntity) {
         log.info("[BoardController][saveBoard][/board] : {}", boardRequestVo.toString());
-        boardService.saveBoard(mapper.toDto(boardRequestVo, userEntity));
-        return CommResponseVo.<BoardDto>builder().build();
+        boardService.saveBoard(mapper.toServiceDto(boardRequestVo, userEntity));
+        return CommResponseVo.<BoardServiceDto>builder().build();
     }
 
     @PutMapping("/board/{id}")
-    public CommResponseVo<BoardDto> updateBoard(@PathVariable String id, @RequestBody @Valid BoardRequestVo boardRequestVo, @AuthenticationPrincipal UserEntity userEntity) {
+    public CommResponseVo<BoardServiceDto> updateBoard(@PathVariable String id, @RequestBody @Valid BoardRequestVo boardRequestVo, @AuthenticationPrincipal UserEntity userEntity) {
         log.info("[BoardController][updateBoard][/board] : {}", boardRequestVo.toString());
-        boardService.updateBoard(id, mapper.toDto(boardRequestVo, userEntity));
-        return CommResponseVo.<BoardDto>builder().build();
+        boardService.updateBoard(id, mapper.toServiceDto(boardRequestVo, userEntity));
+        return CommResponseVo.<BoardServiceDto>builder().build();
     }
 
     @DeleteMapping("/board/{id}")
-    public CommResponseVo<BoardDto> deleteBoard(@PathVariable String id, @AuthenticationPrincipal UserEntity userEntity) {
+    public CommResponseVo<BoardServiceDto> deleteBoard(@PathVariable String id, @AuthenticationPrincipal UserEntity userEntity) {
         log.info("[BoardController][deleteBoard][/board] : {}", id);
         boardService.deleteBoard(id, userEntity);
-        return CommResponseVo.<BoardDto>builder().build();
+        return CommResponseVo.<BoardServiceDto>builder().build();
     }
 }

@@ -11,7 +11,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.nowstart.study.data.dto.BoardDto;
+import org.nowstart.study.data.dto.board.BoardServiceDto;
 
 @Entity
 @Getter
@@ -39,8 +39,8 @@ public class BoardEntity extends CommEntity {
         this.userEntity = userEntity;
     }
 
-    public void update(BoardDto boardDto) {
-        this.title = boardDto.getTitle();
-        this.contents = boardDto.getContents();
+    public void update(BoardServiceDto boardServiceDto) {
+        this.title = boardServiceDto.getTitle();
+        this.contents = boardServiceDto.getContents();
     }
 }

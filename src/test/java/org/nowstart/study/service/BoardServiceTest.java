@@ -13,11 +13,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
-import org.nowstart.study.data.dto.BoardDto;
+import org.nowstart.study.data.dto.board.BoardFindServiceDto;
+import org.nowstart.study.data.dto.board.BoardServiceDto;
 import org.nowstart.study.data.entity.BoardEntity;
 import org.nowstart.study.data.entity.UserEntity;
 import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.data.type.RolesType;
+import org.nowstart.study.data.vo.response.BoardResponseVo;
 import org.nowstart.study.data.vo.response.CommResponseVo;
 import org.nowstart.study.exception.SecurityException;
 import org.nowstart.study.repository.BoardRepositoryBoard;
@@ -39,7 +41,7 @@ class BoardServiceTest {
         //given
 
         //when
-        CommResponseVo<BoardDto> result = service.findAllBoard(BoardDto.builder().build());
+        CommResponseVo<BoardResponseVo> result = service.findAllBoard(BoardFindServiceDto.builder().build());
 
         //then
         assertThat(result.getFlag()).isEqualTo("0000");
@@ -49,7 +51,7 @@ class BoardServiceTest {
     @Test
     void saveBoard() {
         //given
-        BoardDto boardDto = BoardDto.builder()
+        BoardServiceDto boardServiceDto = BoardServiceDto.builder()
             .title("testTitle")
             .contents("testContents")
             .build();
@@ -57,14 +59,14 @@ class BoardServiceTest {
         //when
 
         //then
-        assertDoesNotThrow(() -> service.saveBoard(boardDto));
+        assertDoesNotThrow(() -> service.saveBoard(boardServiceDto));
     }
 
     @Test
     void updateBoard() {
         //given
         String id = "testId";
-        BoardDto boardDto = BoardDto.builder()
+        BoardServiceDto boardServiceDto = BoardServiceDto.builder()
             .title("testTitle")
             .contents("testContents")
             .userEntity(UserEntity.builder()
@@ -80,14 +82,14 @@ class BoardServiceTest {
             .build()));
 
         //then
-        assertDoesNotThrow(() -> service.updateBoard(id, boardDto));
+        assertDoesNotThrow(() -> service.updateBoard(id, boardServiceDto));
     }
 
     @Test
     void updateBoard_exception() {
         //given
         String id = "testId";
-        BoardDto boardDto = BoardDto.builder()
+        BoardServiceDto boardServiceDto = BoardServiceDto.builder()
             .title("testTitle")
             .contents("testContents")
             .build();
@@ -96,14 +98,14 @@ class BoardServiceTest {
         given(repository.findById(any())).willThrow(NoSuchElementException.class);
 
         //then
-        assertThatThrownBy(() -> service.updateBoard(id, boardDto)).isInstanceOf(NoSuchElementException.class);
+        assertThatThrownBy(() -> service.updateBoard(id, boardServiceDto)).isInstanceOf(NoSuchElementException.class);
     }
 
     @Test
     void updateBoard_securityException() {
         //given
         String id = "testId";
-        BoardDto boardDto = BoardDto.builder()
+        BoardServiceDto boardServiceDto = BoardServiceDto.builder()
             .title("testTitle")
             .contents("testContents")
             .userEntity(UserEntity.builder()
@@ -119,7 +121,7 @@ class BoardServiceTest {
             .build()));
 
         //then
-        assertThatThrownBy(() -> service.updateBoard(id, boardDto)).isInstanceOf(SecurityException.class);
+        assertThatThrownBy(() -> service.updateBoard(id, boardServiceDto)).isInstanceOf(SecurityException.class);
     }
 
     @Test

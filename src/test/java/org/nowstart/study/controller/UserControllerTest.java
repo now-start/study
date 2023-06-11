@@ -34,15 +34,20 @@ class UserControllerTest {
     void saveUser() throws Exception {
         //given
         ObjectMapper objectMapper = new ObjectMapper();
-        String requestBody = objectMapper.writeValueAsString(new UserRequestVo("testId", "password", "name", "USER"));
+        String requestBody = objectMapper.writeValueAsString(UserRequestVo.builder()
+            .id("testId")
+            .password("password")
+            .name("name")
+            .role("USER")
+            .build());
 
 
         //when
         MvcResult result = mvc.perform(post("/user")
             .with(csrf())
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestBody)).andReturn();
+            .accept(MediaType.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(requestBody)).andReturn();
 
         //then
         assertThat(result.getResponse().getStatus()).isEqualTo(200);

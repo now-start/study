@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum SearchType {
 
     ID("id"),
-    CONTENT("content");
+    CONTENT("content"),
+    UNDEFINED("");
 
     private final String code;
 

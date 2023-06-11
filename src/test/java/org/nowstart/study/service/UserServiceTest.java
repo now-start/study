@@ -12,7 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
-import org.nowstart.study.data.dto.UserDto;
+import org.nowstart.study.data.dto.user.UserSaveDto;
 import org.nowstart.study.data.entity.UserEntity;
 import org.nowstart.study.data.mapper.Mapper;
 import org.nowstart.study.repository.UserRepositoryBoard;
@@ -36,7 +36,7 @@ class UserServiceTest {
     @Test
     void saveUser() {
         //given
-        UserDto userDto = UserDto.builder()
+        UserSaveDto userSaveDto = UserSaveDto.builder()
             .id("id")
             .password("password")
             .name("name")
@@ -45,13 +45,13 @@ class UserServiceTest {
         //when
 
         //then
-        assertDoesNotThrow(() -> service.saveUser(userDto));
+        assertDoesNotThrow(() -> service.saveUser(userSaveDto));
     }
 
     @Test
     void saveUser_exception() {
         //given
-        UserDto userDto = UserDto.builder()
+        UserSaveDto userSaveDto = UserSaveDto.builder()
             .id("id")
             .password("password")
             .name("name")
@@ -61,13 +61,13 @@ class UserServiceTest {
         //when
 
         //then
-        assertThatThrownBy(() -> service.saveUser(userDto)).isInstanceOf(DuplicateRequestException.class);
+        assertThatThrownBy(() -> service.saveUser(userSaveDto)).isInstanceOf(DuplicateRequestException.class);
     }
 
     @Test
     void loadUserByUsername() {
         //given
-        UserDto userDto = UserDto.builder()
+        UserSaveDto userSaveDto = UserSaveDto.builder()
             .id("id")
             .password("password")
             .name("name")
@@ -77,13 +77,13 @@ class UserServiceTest {
         //when
 
         //then
-        assertDoesNotThrow(() -> service.loadUserByUsername(userDto.getId()));
+        assertDoesNotThrow(() -> service.loadUserByUsername(userSaveDto.getId()));
     }
 
     @Test
     void loadUserByUsername_exception() {
         //given
-        UserDto userDto = UserDto.builder()
+        UserSaveDto userSaveDto = UserSaveDto.builder()
             .id("id")
             .password("password")
             .name("name")
@@ -93,6 +93,6 @@ class UserServiceTest {
         //when
 
         //then
-        assertThatThrownBy(() -> service.loadUserByUsername(userDto.getId())).isInstanceOf(UsernameNotFoundException.class);
+        assertThatThrownBy(() -> service.loadUserByUsername(userSaveDto.getId())).isInstanceOf(UsernameNotFoundException.class);
     }
 }
