@@ -13,7 +13,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.nowstart.study.data.type.RolesType;
-import org.springframework.data.domain.Persistable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Getter
 @Table(name = "users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserEntity extends CommEntity implements UserDetails, Persistable<String> {
+public class UserEntity extends BaseEntity implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private RolesType role;
@@ -71,10 +70,5 @@ public class UserEntity extends CommEntity implements UserDetails, Persistable<S
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    @Override
-    public boolean isNew() {
-        return getCreatedDate() == null;
     }
 }

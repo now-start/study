@@ -17,7 +17,7 @@ import org.nowstart.study.data.dto.board.BoardServiceDto;
 @Getter
 @Table(name = "board")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class BoardEntity extends CommEntity {
+public class BoardEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
