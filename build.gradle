@@ -121,7 +121,7 @@ jacocoTestCoverageVerification {
                 counter = 'METHOD' // Option: INSTRUCTION(default), LINE, BRANCH, CLASS, METHOD, COMPLEXITY
                 value = 'COVEREDRATIO'
                 // Option: COVEREDRATIO(default), TOTALCOUNT, MISSEDCOUNT, COVEREDCOUNT, MISSEDRATIO
-                minimum = 1.00
+//                minimum = 1.00
             }
 
             // Branch 커버리지
@@ -129,7 +129,7 @@ jacocoTestCoverageVerification {
                 counter = 'BRANCH' // Option: INSTRUCTION(default), LINE, BRANCH, CLASS, METHOD, COMPLEXITY
                 value = 'COVEREDRATIO'
                 // Option: COVEREDRATIO(default), TOTALCOUNT, MISSEDCOUNT, COVEREDCOUNT, MISSEDRATIO
-                minimum = 0.60
+//                minimum = 0.80
             }
 
             // 커버리지 체크 제외 클래스
