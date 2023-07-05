@@ -39,7 +39,7 @@ jobs:
         env:
           REPO: self
           BRANCH: gh-pages
-          FOLDER: report
+          FOLDER: .github/badges
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MESSAGE: "Add Badge and report by Action"
 
