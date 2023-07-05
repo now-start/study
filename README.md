@@ -1,7 +1,7 @@
 # study
 ![build](https://github.com/now-start/study/actions/workflows/build.yml/badge.svg)
-![Coverage](.github/badges/jacoco.svg)
-![Coverage](https://github.com/LGUPLUS-IPTV-MSA/payment-service/blob/gh-pages/jacoco.svg)
+![Coverage](https://github.com/now-start/study/blob/gh-pages/jacoco.svg)
+![Branches](https://github.com/now-start/study/blob/gh-pages/branches.svg)
 
 This project is designed to study Spring Boot 3.X, CI/CD, and various architectures.
 
