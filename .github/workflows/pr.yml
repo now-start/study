@@ -34,13 +34,7 @@ jobs:
           generate-branches-badge: true
           jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
 
-      - name: Log coverage percentage
-        run: |
-          echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
-          echo "branches = ${{ steps.jacoco.outputs.branches }}"
-
       - name: Commit and push
-        if: ${{ github.event_name != 'pull_request' }}
         run: |
           cd .github/badges
           if [[ `git status --porcelain *.svg` ]]; then
