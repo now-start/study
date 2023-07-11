@@ -33,7 +33,7 @@ gradlew clean build -x test
 ```
 * You must enter a `${PASSWORD}`
 ```shell
-java -Dspring.security.password=${PASSWORD} -Dspring.profiles.active=${PROFILE} -jar study-0.0.1-SNAPSHOT.jar
+java -Dspring.security.password=${PASSWORD} -Dspring.profiles.active=${PROFILE} -jar study-*.jar
 ```
 
 * If you don't know the password or want to use a different DB, you must create a `application-${PROFILE}.yml` file and
