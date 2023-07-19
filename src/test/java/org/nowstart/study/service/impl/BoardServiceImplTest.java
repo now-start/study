@@ -1,13 +1,5 @@
-package org.nowstart.study.service;
+package org.nowstart.study.service.impl;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
-
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,17 +14,25 @@ import org.nowstart.study.data.type.RolesType;
 import org.nowstart.study.data.vo.response.BoardResponseVo;
 import org.nowstart.study.data.vo.response.CommResponseVo;
 import org.nowstart.study.exception.SecurityException;
-import org.nowstart.study.repository.BoardRepositoryBoard;
-import org.nowstart.study.service.impl.BoardServiceImpl;
+import org.nowstart.study.repository.BoardRepository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+
 @ExtendWith(SpringExtension.class)
-class BoardServiceTest {
+class BoardServiceImplTest {
 
     @InjectMocks
     BoardServiceImpl service;
     @Mock
-    BoardRepositoryBoard repository;
+    BoardRepository repository;
     @Spy
     Mapper mapper;
 

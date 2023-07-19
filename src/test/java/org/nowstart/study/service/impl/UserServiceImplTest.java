@@ -1,12 +1,6 @@
-package org.nowstart.study.service;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
+package org.nowstart.study.service.impl;
 
 import com.sun.jdi.request.DuplicateRequestException;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,19 +9,25 @@ import org.mockito.Spy;
 import org.nowstart.study.data.dto.user.UserSaveDto;
 import org.nowstart.study.data.entity.UserEntity;
 import org.nowstart.study.data.mapper.Mapper;
-import org.nowstart.study.repository.UserRepositoryBoard;
-import org.nowstart.study.service.impl.UserServiceImpl;
+import org.nowstart.study.repository.UserRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+
 @ExtendWith(SpringExtension.class)
-class UserServiceTest {
+class UserServiceImplTest {
 
     @InjectMocks
     UserServiceImpl service;
     @Mock
-    UserRepositoryBoard repository;
+    UserRepository repository;
     @Spy
     Mapper mapper;
     @Spy

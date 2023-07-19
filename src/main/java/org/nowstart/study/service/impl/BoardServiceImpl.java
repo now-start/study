@@ -1,7 +1,5 @@
 package org.nowstart.study.service.impl;
 
-import java.util.List;
-import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.nowstart.study.data.dto.board.BoardFindServiceDto;
@@ -13,10 +11,13 @@ import org.nowstart.study.data.type.RolesType;
 import org.nowstart.study.data.vo.response.BoardResponseVo;
 import org.nowstart.study.data.vo.response.CommResponseVo;
 import org.nowstart.study.exception.SecurityException;
-import org.nowstart.study.repository.BoardRepositoryBoard;
+import org.nowstart.study.repository.BoardRepository;
 import org.nowstart.study.service.BoardService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -25,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BoardServiceImpl implements BoardService {
 
     private final Mapper mapper;
-    private final BoardRepositoryBoard boardRepository;
+    private final BoardRepository boardRepository;
 
     public CommResponseVo<BoardResponseVo> findAllBoard(BoardFindServiceDto boardFindServiceDto) {
         List<BoardResponseVo> resultSet = boardRepository.findAll(boardFindServiceDto).stream().map(mapper::toResponseVo).toList();

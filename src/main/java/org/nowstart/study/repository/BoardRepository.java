@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BoardRepositoryBoard extends JpaRepository<BoardEntity, String>, BoardQueryDslRepository {
+public interface BoardRepository extends JpaRepository<BoardEntity, String>, BoardQueryDslRepository {
 
 }
 
